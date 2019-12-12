@@ -1,19 +1,42 @@
 package main
 
+/*O(n^2)
 func twoSum(nums []int, target int) []int {
 
-	if len(nums) < 2 {
-		return []int{0, 0}
-	}else {
-		return []int{0, 1}
+	l := len(nums)
+
+	if l < 2 {
+		return []int{}
 	}
-}
-
-func twoSum(nums []int, target int) []int {
-	var res []int
-	len := len(nums)
 	for i, number := range nums {
-		for 
+		for j := 0; j < l; j++ {
+			if i != j {
+				if number + nums[j] == target {
+					return []int{i, j}
+				}
+			}
+		}
 	}
-	return res
+	return []int{}
+}
+*/
+
+//O(n)
+func twoSum(nums []int, target int) []int {
+	hash := make(map[int]int)
+	l := len(nums)
+
+	if l < 2 {
+		return []int{}
+	}
+	for i, number := range nums {
+		hash[number] = i
+	}
+	for i, number := range nums {
+		size := target - number
+		if j, ok :=  hash[size]; ok  && j != i{
+			return []int{i, j}
+		}
+	}
+	return []int{}
 }
