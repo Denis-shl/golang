@@ -54,4 +54,13 @@ func Test_set(t *testing.T) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
+
+	t.Run("make the func difference", func(t *testing.T) {
+		got := difference(str, str2)
+		want := []int{1,2}
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("got %v want %v", got, want)
+		}
+	})
 }

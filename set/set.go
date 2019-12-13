@@ -53,3 +53,14 @@ func intersection(setOne []int, setTwo []int)[]int{
 	}
 	return s
 }
+//Returns a set that is different current with the specified.
+func difference(setOne []int, setTwo []int)[]int{
+	var set []int
+
+	for _,num := range setOne{
+		if contains(num, setTwo) == -1 {
+			set = add(set, num)
+		}
+	}
+	return set
+}
