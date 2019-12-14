@@ -1,66 +1,66 @@
 package main
 
-//repetition does not include
-func add(set []int, n ...int)[]int{
+type set struct {
+	data []int
+}
 
-	for  _, number := range  n{
-		if contains(number, set) == -1 {
-			set = append(set, number)
+//repetition does not include
+func (s *set) Add(n ...int) {
+	for _, number := range n {
+		if s.Contains(number) == false {
+			s.data = append(s.data, number)
 		}
 	}
-	return set
 }
 
 // element search function
-func contains (number int, set []int)int{
-
-	for i, nums := range set{
-		if nums == number {
-			return i
+func (s *set) Contains(n int) bool {
+	for _, number := range s.data {
+		if number == n {
+			return true
 		}
 	}
-	return -1
+	return false
 }
 
-func deleted(set []int, el ...int) []int{
-
-	for _, number := range el{
-		x := contains(number, set)
-		if x != -1 {
-			set = append(set[:x], set[x + 1:]...)
+func (s *set) Deleted(n ...int) {
+	for i, number := range n {
+		if s.Contains(number) == true {
+			s.data = append(s.data[:i], s.data[i+1:]...)
 		}
 	}
-	return set
 }
 
-func union(set ...[]int)[]int{
-	var set2  []int
+func (s *set) Union(w *set) *set {
+	setNew := new(set)
+	setNew = s
 
-	for _, s := range set{
-		set2 = add(set2, s[0:]...)
-	}
-	return set2
+	setNew.Add(w.data[0:]...)
+	return setNew
 }
 
 //Returns the set obtained by the operation of intersecting it with the specified one.
-func intersection(setOne []int, setTwo []int)[]int{
-	var s []int
-
-	for _, numb := range setOne{
-		if contains(numb, setTwo) != -1 {
-			s = add(s, numb)
+func (s *set)Intersection(w *set)*set{
+	setNew := new(set)
+	for _, number := range s.data{
+		if w.Contains(number) == true{
+			setNew.Add(number)
 		}
 	}
-	return s
+	return setNew
 }
 //Returns a set that is different current with the specified.
-func difference(setOne []int, setTwo []int)[]int{
-	var set []int
-
-	for _,num := range setOne{
-		if contains(num, setTwo) == -1 {
-			set = add(set, num)
+func (s *set)Difference(w *set)*set{
+	setNew := new(set)
+	for _, number := range s.data{
+		if w.Contains(number) == false{
+			setNew.Add(number)
 		}
 	}
-	return set
+	return setNew
+}
+
+func InitSet()*set{
+	s := new(set)
+	return s
 }
