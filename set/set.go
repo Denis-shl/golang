@@ -32,9 +32,7 @@ func (s *set) Deleted(n ...int) {
 }
 
 func (s *set) Union(w *set) *set {
-	setNew := new(set)
-	setNew = s
-
+	setNew := s
 	setNew.Add(w.data[0:]...)
 	return setNew
 }
