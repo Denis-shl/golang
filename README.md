@@ -1,4 +1,4 @@
-# golang
+# Worket pool
 
 **Задание**
 
