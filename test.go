@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"sync"
 )
 
 /*
@@ -29,34 +28,79 @@ func main (){
 
 }
 */
-
-type MyCounters struct{
-	mx sync.Mutex
-	n map[string]int
+//-----------------------
+//interface
+type Payer interface {
+	Pay(int) error
 }
 
+//------------------
+// struct
 
-func NewCounters() *MyCounters {
+type Wallet struct {
+	name string
+	many int
+}
 
-	return &MyCounters{
-		mx: sync.Mutex{},
-		n:  make(map[string]int),
+type Card struct {
+	Balance    int
+	ValidUntil string
+	CardHolder string
+	CVV        string
+	number     string
+}
+
+type AppleId struct {
+	Money   int
+	AppleId string
+}
+
+//-----------------
+// methods
+func (s *Wallet) Pay(sum int) error {
+	if sum > s.many {
+		fmt.Errorf("not many")
 	}
+	s.many = s.many - sum
+	return nil
 }
 
-func main(){
+func (s *Card) Pay(sum int) error {
+	if sum > s.Balance {
+		return fmt.Errorf("not many")
+	}
+	s.Balance = s.Balance - sum
+	return nil
+}
 
-	var a = []int{1,2,3,4}
+func (s *AppleId)Pay(sum int)error{
+	if sum > s.Money {
+		return fmt.Errorf("not many")
+	}
+	s.Money = s.Money - sum
+	return nil
+}
+
+func Buy(p Payer) {
+	err := p.Pay(10)
+	if err != nil {
+		fmt.Println("Ошибка.Не хватает денег")
+		return
+	}
+	fmt.Println("good buy")
+}
+
+func main() {
+	myWallet := &Wallet{"denis", 100}
+	Buy(myWallet)
 
 
-	fmt.Println(len(a))
-	fmt.Println(cap(a))
-	fmt.Printf("%p\n", &a)
-	fmt.Println("%p", &a[0])
+	var pay Payer
 
-	a = append(a, 1)
-	fmt.Println(len(a))
-	fmt.Println(cap(a))
-	fmt.Printf("%p\n", &a)
-	fmt.Println("%p", &a[0])
+	pay = &Card{Balance	: 11, CardHolder: "denis"}
+	Buy(pay)
+
+	my := &AppleId{9, "denis"}
+	Buy(my)
+	fmt.Println(my.Money)
 }
