@@ -1,11 +1,10 @@
-package main
+package worker
 
 import (
 	"testing"
 )
 
-func Test_Worketpool(t *testing.T) {
-
+func Test_Wrorkpool(t *testing.T) {
 	workerPool(4)
 }
 
