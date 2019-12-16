@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func Test_Wrorkpool(t *testing.T) {
+func TestWorkerPool(t *testing.T) {
 	workerPool(4)
 }
 
