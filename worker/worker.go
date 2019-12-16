@@ -7,10 +7,10 @@ import (
 	"time"
 )
 
-func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup) {
+func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup, TimeJobs int) {
 	var x int
 	defer w.Done()
-	timeRand := rand.Intn(4)
+	timeRand := rand.Intn(TimeJobs)
 	m := make(map[int]int)
 	fmt.Println("the worker", id, "began to work")
 	for j := range jobs {
@@ -29,22 +29,22 @@ func foreman(working int, result chan map[int]int, w *sync.WaitGroup) {
 	}
 }
 
-func workerPool(working int) {
+func workerPool(working int, TimeJobs int, QuantityJobs int) {
 	result := make(chan map[int]int, working) // map[working][work complete]
-	jobs := make(chan int, 100)
+	jobs := make(chan int, QuantityJobs)
 	w := sync.WaitGroup{}
 	for i := 1; i <= working; i++ {
 		w.Add(1)
-		go work(i, jobs, result, &w)
+		go work(i, jobs, result, &w, TimeJobs)
 	}
-	go func(jobs chan int) {
+	go func(jobs chan int, QuantityJobs int) {
 		defer close(jobs)
 
-		for i := 0; i < 8; i++ {
+		for i := 0; i < QuantityJobs; i++ {
 			jobs <- 1
 		}
-	}(jobs)
+	}(jobs, QuantityJobs)
 	w.Add(1)
 	go foreman(working, result, &w)
-	w.Wait()
+	w.Wait() // ожидаем выполнения foreman
 }
