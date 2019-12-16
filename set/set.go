@@ -4,7 +4,7 @@ type set struct {
 	data []int
 }
 
-//repetition does not include
+//Add repetition does not include
 func (s *set) Add(n ...int) {
 	for _, number := range n {
 		if s.Contains(number) == false {
@@ -13,7 +13,7 @@ func (s *set) Add(n ...int) {
 	}
 }
 
-// element search function
+//Contains element search function
 func (s *set) Contains(n int) bool {
 	for _, number := range s.data {
 		if number == n {
@@ -37,7 +37,7 @@ func (s *set) Union(w *set) *set {
 	return setNew
 }
 
-//Returns the set obtained by the operation of intersecting it with the specified one.
+//Intersection returns the set obtained by the operation of intersecting it with the specified one.
 func (s *set)Intersection(w *set)*set{
 	setNew := new(set)
 	for _, number := range s.data{
@@ -47,7 +47,7 @@ func (s *set)Intersection(w *set)*set{
 	}
 	return setNew
 }
-//Returns a set that is different current with the specified.
+//Difference returns a set that is different current with the specified.
 func (s *set)Difference(w *set)*set{
 	setNew := new(set)
 	for _, number := range s.data{
@@ -58,7 +58,7 @@ func (s *set)Difference(w *set)*set{
 	return setNew
 }
 
-func InitSet()*set{
+func NewSet()*set{
 	s := new(set)
 	return s
 }

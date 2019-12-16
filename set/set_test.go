@@ -8,8 +8,8 @@ import (
 
 func Test_set(t *testing.T) {
 
-	got := InitSet()
-	sets := InitSet()
+	got := NewSet()
+	sets := NewSet()
 	sets.Add(1,2,3)
 
 	t.Run("make the add testing", func(t *testing.T) {
@@ -42,7 +42,7 @@ func Test_set(t *testing.T) {
 
 	t.Run("make the func Union", func(t *testing.T) {
 
-		s := InitSet()
+		s := NewSet()
 		s = got.Union(sets)
 		want := []int{2,3,1}
 
@@ -51,9 +51,9 @@ func Test_set(t *testing.T) {
 		}
 	})
 
-	got = InitSet()
+	got = NewSet()
 	got.Add(1,2,3,4)
-	sets = InitSet()
+	sets = NewSet()
 	sets.Add(3,4)
 
 	t.Run("make the func Intersection", func(t *testing.T) {
@@ -65,9 +65,9 @@ func Test_set(t *testing.T) {
 		}
 	})
 
-	got = InitSet()
+	got = NewSet()
 	got.Add(1,2,3,4)
-	sets = InitSet()
+	sets = NewSet()
 	sets.Add(3,4)
 	t.Run("make the func difference", func(t *testing.T) {
 		got = got.Difference(sets)
