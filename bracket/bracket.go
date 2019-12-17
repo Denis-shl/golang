@@ -11,10 +11,7 @@ func openParenthesis(s rune) bool {
 }
 
 func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
-	var i int
-
-	i = len(stack)
-
+	i := len(stack)
 	if i > 0 {
 		if stack[i-1] == symbol-1 || stack[i-1] == symbol-2 {
 			stack := append(stack[:i-1], stack[i:]...)
