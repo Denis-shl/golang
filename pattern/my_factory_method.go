@@ -3,20 +3,48 @@ package main
 import "fmt"
 
 type Animal interface{
-	speak()
+	Use() string
 }
 
-type stAnimal struct{
-	Animal
-	name string
+type CreateAnimal interface{
+	CreateAnimals(actions string)Animal
 }
 
-type Cat struct{
-	stAnimal
-	color string
+type ConcreteCreater struct{
 }
 
-func NewAnimal (){
-	return
-	
+
+func NewAnimal ()CreateAnimal{
+	return &ConcreteCreater{}
+}
+
+type CreateAnimalCat struct{
+	action string
+}
+
+func (p *CreateAnimalCat) Use()string{
+	return p.action
+}
+
+
+func (p *ConcreteCreater)CreateAnimal(action string)Animal{
+	var animals Animal
+
+	if action == "cat"{
+		animals = &CreateAnimalCat{"cat"}
+	}
+	return animals
+}
+
+func main (){
+
+	x := NewAnimal()
+	w := []CreateAnimal{
+		x.CreateAnimals("cat"),
+		x.CreateAnimals("cat"),
+	}
+
+
+
+	fmt.Println(x)
 }
