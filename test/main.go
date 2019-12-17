@@ -1,33 +1,57 @@
 package main
 
-type info struct{
-	symb rune
-}
+import (
+	"fmt"
+)
 
-func NewList(symb rune)info{
-	return &info{symb}
-}
-
-func push(p *info, symb rune){
-	for i, x := range p{
-		
+func openParenthesis(s rune) bool {
+	str := []rune{'(', '{', '['}
+	for _, symb := range str {
+		if symb == s {
+			return true
+		}
 	}
+	return false
+}
+
+func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
+	var i int
+
+	i = len(stack)
+
+	if i > 0 {
+		if stack[i-1] == symbol-1 || stack[i-1] == symbol-2 {
+			stack := append(stack[:i-1], stack[i:]...)
+			return stack, true
+		}
+	}
+	return stack, false
 
 }
-//нужна функция которая кладет в конец списка новую скобку 
-//Нужна функция которая проверяет открывающая это скобка или нет
-//Нужна функция которая проверяет подходит закрывающая скобка к предыдещей закрывающей 
 
+func isValid(s string) bool {
+	var stack []rune
+	var ok bool
 
-func sko(str string)bool{
-	for i, symb := range str{
-		if x(symb) == true {
-			push(symb)
-		}else{
-			if c(symb) == true{
-
+	if len(s) == 0 {
+		return true
+	}
+	for _, symb := range s {
+		if openParenthesis(symb) == true {
+			stack = append(stack, symb)
+		} else {
+			stack, ok = removeBrackets(stack, symb)
+			if ok == false {
+				return false
 			}
 		}
 	}
+	if len(stack) != 0 {
+		return false
+	}
 	return true
+}
+
+func main() {
+	fmt.Println(isValid("]"))
 }
