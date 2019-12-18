@@ -2,8 +2,8 @@ package bracket
 
 func openParenthesis(s rune) bool {
 	str := []rune{'(', '{', '['}
-	for _, symb := range str {
-		if symb == s {
+	for _, saab := range str {
+		if saab == s {
 			return true
 		}
 	}
@@ -25,15 +25,14 @@ func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
 func isValid(s string) bool {
 	var stack []rune
 	var ok bool
-
 	if len(s) == 0 {
 		return true
 	}
-	for _, symb := range s {
-		if openParenthesis(symb) == true {
-			stack = append(stack, symb)
+	for _, saab := range s {
+		if openParenthesis(saab) == true {
+			stack = append(stack, saab)
 		} else {
-			stack, ok = removeBrackets(stack, symb)
+			stack, ok = removeBrackets(stack, saab)
 			if ok == false {
 				return false
 			}
