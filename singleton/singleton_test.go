@@ -2,21 +2,29 @@ package singleton
 
 import (
 	"fmt"
+	"sync"
 	"testing"
 )
 
 func TestSingelton(t *testing.T) {
-	for i := 0; i < 2; i++ {
+
+	wg := sync.WaitGroup{}
+	x := GetInstance()
+	for i := 0; i < 100; i++ {
 		x := GetInstance()
 		x.Add()
 		x.Done()
-		go func(x Singleton) {
+
+		wg.Add(1)
+		go func(x Singleton, wg *sync.WaitGroup) {
+			defer wg.Done()
 			y := GetInstance()
 			y.Add()
-			if &x != &y {
-				t.Errorf("got %p want  %p", &x, &y)
+			if x != y {
+				t.Errorf("got %p want  %p", x, y)
 			}
-		}(x)
-		fmt.Println(i)
+		}(x, &wg)
 	}
+	wg.Wait()
+	fmt.Println(x.GetValue())
 }
