@@ -1,7 +1,6 @@
-package main
+package singleton
 
 import (
-	"fmt"
 	"sync"
 )
 
@@ -40,16 +39,4 @@ func (p *singleton) Done() {
 }
 func (p *singleton) GetValue() int {
 	return p.count
-}
-
-func main() {
-
-	x := GetInstance()
-	x.Add()
-	x.Add()
-	fmt.Printf("%d\n", x.GetValue())
-
-	y := GetInstance()
-	y.Add()
-	fmt.Printf("%d", y.GetValue())
 }
