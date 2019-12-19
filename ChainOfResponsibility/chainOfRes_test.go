@@ -2,7 +2,6 @@ package ChainOfRes
 
 import "testing"
 
-
 func TestChainOfRes(t *testing.T){
 	t.Run("testing pattern ChainOfResponsibility", func (t *testing.T){
 		b := NewHandlerA(NewHandlerC(NewHandlerB(nil)))
