@@ -1,6 +1,7 @@
-package hasCycle
+package circularList
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
 )
 
@@ -9,20 +10,20 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (p *ListNode)Append(head *ListNode, listNew *ListNode)*ListNode{
+func (p *ListNode) Append(head *ListNode, listNew *ListNode) *ListNode {
 	tmp := &head
 	for {
-		if (*tmp).Next == nil{
+		if (*tmp).Next == nil {
 			(*tmp).Next = listNew
-			return  head
+			return head
 		}
 		tmp = &(*tmp).Next
 	}
 }
 
-func TestHasCycle(t *testing.T){
+func TestHasCycle(t *testing.T) {
 
-	t.Run("test Cycle list", func(t *testing.T){
+	t.Run("test Cycle list", func(t *testing.T) {
 		head := &ListNode{}
 		for i := 0; i < 10; i++ {
 			listNew := &ListNode{}
@@ -31,8 +32,7 @@ func TestHasCycle(t *testing.T){
 		head.Next.Next.Next.Next.Next.Next.Next.Next = head
 		got := hasCycle(head)
 		want := true
-
-		if got != want {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("error test got %v  want %v", got, want)
 		}
 	})

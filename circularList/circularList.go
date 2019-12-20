@@ -1,4 +1,4 @@
-package hasCycle
+package circularList
 
 func hasCycle(head *ListNode) bool {
 	maps := make(map[*ListNode]int)
@@ -17,5 +17,3 @@ func hasCycle(head *ListNode) bool {
 	}
 	return false
 }
-
-
