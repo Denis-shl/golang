@@ -1,4 +1,4 @@
-package ChainOfRes
+package chainOfRes
 
 type doctorB struct {
 	name string
@@ -17,10 +17,10 @@ func (p *doctorB) Treat(name string) bool {
 	return true
 }
 
-// NewHandler ...
+// NewHandlerB ...
 func NewHandlerB(next Handler) Handler {
 	if next == nil {
 		return &Default{}
 	}
 	return &doctorB{next: next}
-	}
+}
