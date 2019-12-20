@@ -6,40 +6,41 @@ type Subject interface {
 	GetName() string
 }
 
+// Proxy ...
 type Proxy struct {
 	realSubject Subject
 }
 
 // PutName put a name in a  proxy object
-func (s *Proxy) PutName(x string) {
-	s.getRealObj()
-	s.realSubject.PutName(x)
+func (p *Proxy) PutName(x string) {
+	p.getRealObj()
+	p.realSubject.PutName(x)
 }
 
 // GetName getting proxy name
-func (s *Proxy) GetName() string {
-	s.getRealObj()
-	return s.realSubject.GetName()
+func (p *Proxy) GetName() string {
+	p.getRealObj()
+	return p.realSubject.GetName()
 }
 
 // RealSubject implements a real subject
-type RealSubject struct {
+type realSubject struct {
 	name string
 }
 
 // SetName put a name in a real object
-func (s *RealSubject) PutName(x string) {
-	s.name = x
+func (r *realSubject) PutName(str string) {
+	r.name = str
 }
 
 // GetName getting name
-func (s *RealSubject) GetName() string {
-	return s.name
+func (r *realSubject) GetName() string {
+	return r.name
 }
 
 // getRealObj getting a real object
-func (s *Proxy) getRealObj() {
-	if s.realSubject == nil {
-		s.realSubject = &RealSubject{}
+func (p *Proxy) getRealObj() {
+	if p.realSubject == nil {
+		p.realSubject = &realSubject{}
 	}
 }
