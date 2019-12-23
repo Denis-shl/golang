@@ -1,26 +1,27 @@
 package mediator
 
-
-
 import "fmt"
 
 type senderA struct {
 	mediator Mediator
 }
 
-func (s *senderA) Send(x string)string {
+// Send ...
+func (s *senderA) Send(x string) string {
 	return s.mediator.Reach(x)
 }
 
+// SetMediator ...
 func (s *senderA) SetMediator(mediator Mediator) {
 	s.mediator = mediator
 }
 
-func (s *senderA) Speak()string {
+func (s *senderA) speak() string {
 	fmt.Println("i senderA")
 	return "i senderA"
 }
 
+// NewSenderA ...
 func NewSenderA() Performer {
 	return &senderA{}
 }

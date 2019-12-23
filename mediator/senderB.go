@@ -6,19 +6,22 @@ type senderB struct {
 	mediator Mediator
 }
 
-func (s *senderB) Send(x string)string {
+// Send ...
+func (s *senderB) Send(x string) string {
 	return s.mediator.Reach(x)
 }
 
+// SetMediator ...
 func (s *senderB) SetMediator(mediator Mediator) {
 	s.mediator = mediator
 }
 
-func (s *senderB) Speak()string {
+func (s *senderB) speak() string {
 	fmt.Println("i senderB")
 	return "i senderB"
 }
 
+// NewSenderB ...
 func NewSenderB() Performer {
 	return &senderB{}
 }

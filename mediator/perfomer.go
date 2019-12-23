@@ -1,8 +1,8 @@
 package mediator
 
-
+// Performer ...
 type Performer interface {
-	Send(x string)string
-	Speak()string
+	Send(x string) string
+	speak() string
 	SetMediator(mediator Mediator)
 }
