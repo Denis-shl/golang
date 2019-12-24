@@ -1,5 +1,6 @@
 package reverseList
 
+// ListNode ...
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -35,8 +36,10 @@ func NewList(size int) *ListNode {
 
 // reverseList ...
 func reverseList(head *ListNode) *ListNode {
-	var current *ListNode
-	var prev *ListNode = nil
+	var (
+		current *ListNode
+		prev    *ListNode
+	)
 	for {
 		if head == nil {
 			break
