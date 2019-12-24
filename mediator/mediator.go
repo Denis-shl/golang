@@ -24,13 +24,13 @@ func (c *concrete) Reach(x string) string {
 	return "not sender"
 }
 
-// SetConcrete
+// SetConcrete ...
 func (c *concrete) SetConcrete(p1, p2 Performer) {
 	c.p1 = p1
 	c.p2 = p2
 }
 
-// NewMediator
+// NewMediator ...
 func NewMediator() Mediator {
 	return &concrete{}
 }
