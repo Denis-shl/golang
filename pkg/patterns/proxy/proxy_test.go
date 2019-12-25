@@ -5,8 +5,12 @@ import (
 	"testing"
 )
 
+const (
+	testProxy = "testing Proxy pattern"
+)
+
 func TestProxy(t *testing.T) {
-	t.Run("testing Proxy pattern", func(t *testing.T) {
+	t.Run(testProxy, func(t *testing.T) {
 		x := Proxy{}
 		want := "string one"
 		x.PutName("string one")

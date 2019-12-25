@@ -2,8 +2,8 @@ package proxy
 
 // Subject provides an interface for a real subject and its surrogate.
 type Subject interface {
-	PutName(string)
-	GetName() string
+	putName(string)
+	getName() string
 }
 
 // Proxy ...
@@ -14,28 +14,13 @@ type Proxy struct {
 // PutName put a name in a  proxy object
 func (p *Proxy) PutName(x string) {
 	p.getRealObj()
-	p.realSubject.PutName(x)
+	p.realSubject.putName(x)
 }
 
 // GetName getting proxy name
 func (p *Proxy) GetName() string {
 	p.getRealObj()
-	return p.realSubject.GetName()
-}
-
-// RealSubject implements a real subject
-type realSubject struct {
-	name string
-}
-
-// SetName put a name in a real object
-func (r *realSubject) PutName(str string) {
-	r.name = str
-}
-
-// GetName getting name
-func (r *realSubject) GetName() string {
-	return r.name
+	return p.realSubject.getName()
 }
 
 // getRealObj getting a real object
