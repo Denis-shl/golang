@@ -5,11 +5,17 @@ import (
 	"testing"
 )
 
+const (
+	testCycleList = "test Cycle list"
+)
+
+// ListNode ...
 type ListNode struct {
 	Val  int
 	Next *ListNode
 }
 
+// Append  ...
 func (p *ListNode) Append(head *ListNode, listNew *ListNode) *ListNode {
 	tmp := &head
 	for {
@@ -22,8 +28,7 @@ func (p *ListNode) Append(head *ListNode, listNew *ListNode) *ListNode {
 }
 
 func TestHasCycle(t *testing.T) {
-
-	t.Run("test Cycle list", func(t *testing.T) {
+	t.Run(testCycleList, func(t *testing.T) {
 		head := &ListNode{}
 		for i := 0; i < 10; i++ {
 			listNew := &ListNode{}

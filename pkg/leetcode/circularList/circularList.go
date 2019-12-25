@@ -1,5 +1,6 @@
 package circularList
 
+// hasCycle ...
 func hasCycle(head *ListNode) bool {
 	maps := make(map[*ListNode]int)
 	list := head
