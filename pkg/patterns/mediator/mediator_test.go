@@ -19,7 +19,6 @@ func TestMediator(t *testing.T) {
 	senderA.SetMediator(mediator)
 	senderB.SetMediator(mediator)
 	mediator.SetConcrete(senderA, senderB)
-
 	t.Run(newMediatorAndSender, func(t *testing.T) {
 		if !assert.NotNil(t, senderA, senderB, mediator) {
 			t.Errorf("Test func mediator and Sender error  nil %v or nil %v or nil %v", mediator, senderA, senderB)

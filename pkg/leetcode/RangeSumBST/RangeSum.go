@@ -2,12 +2,14 @@ package rangeSum
 
 import "fmt"
 
+// TreeNode ...
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
+// rangeSumBST ...
 func rangeSumBST(root *TreeNode, L int, R int) int {
 	var sum int
 	if root != nil {

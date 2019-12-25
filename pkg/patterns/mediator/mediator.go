@@ -2,7 +2,7 @@ package mediator
 
 import "fmt"
 
-//Mediator ...
+// Mediator ...
 type Mediator interface {
 	Reach(x string) string
 	SetConcrete(p1, p2 Performer)
