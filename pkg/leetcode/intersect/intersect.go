@@ -10,7 +10,7 @@ func Contains(n int, s []int) int {
 	return -1
 }
 
-// Intersection ...
+// Intersect ...
 func Intersect(nums1 []int, nums2 []int) []int {
 	var sl []int
 	for _, number := range nums1 {
