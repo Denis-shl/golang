@@ -4,8 +4,16 @@ import (
 	"testing"
 )
 
+const (
+	testNotValid   = "Test not valid"
+	testValidOne   = "Test valid one"
+	testValidTwo   = "Test valid two"
+	testValidThree = "Test valid three"
+	testValidFour  = "Test valid four"
+)
+
 func TestIsValid(t *testing.T) {
-	t.Run("test not valid", func(t *testing.T) {
+	t.Run(testNotValid, func(t *testing.T) {
 		str := "()(()()()"
 		got := isValid(str)
 		want := false
@@ -13,8 +21,7 @@ func TestIsValid(t *testing.T) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
-
-	t.Run("test valis", func(t *testing.T) {
+	t.Run(testValidOne, func(t *testing.T) {
 		str := "()()(){}[]"
 		got := isValid(str)
 		want := true
@@ -22,8 +29,7 @@ func TestIsValid(t *testing.T) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
-
-	t.Run("test valis", func(t *testing.T) {
+	t.Run(testValidTwo, func(t *testing.T) {
 		str := ""
 		got := isValid(str)
 		want := true
@@ -31,8 +37,7 @@ func TestIsValid(t *testing.T) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
-
-	t.Run("test valis", func(t *testing.T) {
+	t.Run(testValidThree, func(t *testing.T) {
 		str := "(("
 		got := isValid(str)
 		want := false
@@ -40,8 +45,7 @@ func TestIsValid(t *testing.T) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
-
-	t.Run("test valis", func(t *testing.T) {
+	t.Run(testValidFour, func(t *testing.T) {
 		str := "))"
 		got := isValid(str)
 		want := false

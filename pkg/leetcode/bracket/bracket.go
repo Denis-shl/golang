@@ -24,7 +24,7 @@ func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
 
 }
 
-// isValid
+// isValid ...
 func isValid(s string) bool {
 	var stack []rune
 	var ok bool
