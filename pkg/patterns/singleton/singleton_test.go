@@ -1,4 +1,4 @@
-package Singelton
+package singelton
 
 import (
 	"github.com/stretchr/testify/assert"
@@ -6,8 +6,12 @@ import (
 	"testing"
 )
 
+const (
+	testSingleton = "test  Singleton"
+)
+
 func TestSingleton(t *testing.T) {
-	t.Run("test  Singleton", func(t *testing.T) {
+	t.Run(testSingleton, func(t *testing.T) {
 		wg := sync.WaitGroup{}
 		x := GetInstance()
 		for i := 0; i < 100; i++ {
@@ -19,7 +23,7 @@ func TestSingleton(t *testing.T) {
 				defer wg.Done()
 				y := GetInstance()
 				y.Add()
-				if !assert.EqualValues(t, x,y, "") {
+				if !assert.EqualValues(t, x, y, "") {
 					t.Errorf("got %p want  %p", x, y)
 				}
 			}(x, &wg)
