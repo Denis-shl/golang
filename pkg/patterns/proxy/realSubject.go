@@ -1,6 +1,6 @@
 package proxy
 
-// RealSubject implements a real subject
+// realSubject implements a real subject
 type realSubject struct {
 	name string
 }
