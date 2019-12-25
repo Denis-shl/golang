@@ -1,11 +1,13 @@
 package main
 
+// TreeNode ...
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
 	Right *TreeNode
 }
 
+// mergeTrees ...
 func mergeTrees(t1, t2 *TreeNode) *TreeNode {
 	if t1 == nil {
 		return t2
