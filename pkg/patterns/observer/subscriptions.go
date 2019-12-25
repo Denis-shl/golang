@@ -31,6 +31,6 @@ func (s *ConcreteNotify) Deregister(sub Observer) {
 }
 
 // NewConcreteNotify ...
-func NewConcreteNotify ()Notifier{
+func NewConcreteNotify() Notifier {
 	return &ConcreteNotify{make(map[Observer]struct{})}
 }

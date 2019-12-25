@@ -26,7 +26,7 @@ func TestObserve(t *testing.T) {
 		want := 12
 		gotA := observeA.GetData()
 		gotB := observeB.GetData()
-		if !assert.EqualValues(t, want, gotA, gotB){
+		if !assert.EqualValues(t, want, gotA, gotB) {
 			t.Errorf("error test observe want %v gotA %v gotB %v", want, gotA, gotB)
 		}
 	})

@@ -9,7 +9,6 @@ type ListNode struct {
 // GetArray func to convert a list to an array
 func GetArray(head *ListNode) []int {
 	var array []int
-
 	for {
 		if head == nil {
 			return array
@@ -21,9 +20,7 @@ func GetArray(head *ListNode) []int {
 
 // NewList ...
 func NewList(size int) *ListNode {
-	var head *ListNode
-	var tmp *ListNode
-
+	var head, tmp *ListNode
 	head = &ListNode{}
 	tmp = head
 	for i := 1; i < size; i++ {
