@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+// work ...
 func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup, TimeJobs int) {
 	var x int
 	defer w.Done()
@@ -22,6 +23,7 @@ func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup, TimeJo
 	fmt.Println("the worker", id, "end to work")
 }
 
+// foreman ...
 func foreman(working int, result chan map[int]int, w *sync.WaitGroup) {
 	defer w.Done()
 	for i := 1; i <= working; i++ {
@@ -29,6 +31,7 @@ func foreman(working int, result chan map[int]int, w *sync.WaitGroup) {
 	}
 }
 
+// workerPool ...
 func workerPool(working int, TimeJobs int, QuantityJobs int) {
 	result := make(chan map[int]int, working) // map[working][work complete]
 	jobs := make(chan int, QuantityJobs)
