@@ -11,7 +11,7 @@ func Contains(n int, s []int) int {
 }
 
 // Intersection ...
-func intersect(nums1 []int, nums2 []int) []int {
+func Intersect(nums1 []int, nums2 []int) []int {
 	var sl []int
 	for _, number := range nums1 {
 		i := Contains(number, nums2)
