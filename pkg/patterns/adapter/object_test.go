@@ -11,7 +11,7 @@ const (
 
 func TestAdapter(t *testing.T) {
 	t.Run(tesNewAdapter, func(t *testing.T) {
-		adapter := NewAdapter(&ObjA{})
+		adapter := NewAdapter(&objA{})
 		got := adapter.Request()
 		want := "Request"
 		if !reflect.DeepEqual(got, want) {

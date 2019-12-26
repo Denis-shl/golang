@@ -1,10 +1,10 @@
 package adapter
 
-// ObjA implements system to be adapted.
-type ObjA struct {
+// objA implements system to be adapted.
+type objA struct {
 }
 
 // SpecificRequest implementation.
-func (a *ObjA) SpecificRequest() string {
+func (o *objA) SpecificRequest() string {
 	return "Request"
 }

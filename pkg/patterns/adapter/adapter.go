@@ -6,16 +6,16 @@ type Target interface {
 }
 
 // Adapter ...
-type Adapter struct {
-	*ObjA
+type adapter struct {
+	*objA
 }
 
 // Request is an adaptive method.
-func (a *Adapter) Request() string {
+func (a *adapter) Request() string {
 	return a.SpecificRequest()
 }
 
 // NewAdapter ...
-func NewAdapter(obj *ObjA) Target {
-	return &Adapter{obj}
+func NewAdapter(obj *objA) Target {
+	return &adapter{obj}
 }
