@@ -10,7 +10,7 @@ type PointC interface {
 type pointC struct {
 }
 
-// NamePoint ...
+// NamePointC ...
 func (p *pointC) NamePointC() string {
 	return "Point C"
 }
