@@ -1,12 +1,11 @@
 package visitor
 
-// PointA ...
-type PointA interface {
+// PointerA ...
+type PointerA interface {
 	NamePointA() string
 	Pointer
 }
 
-// pointA ...
 type pointA struct {
 }
 
@@ -21,6 +20,6 @@ func (p *pointA) Accept(visitor Visitor) string {
 }
 
 // NewPointA ...
-func NewPointA() PointA {
+func NewPointA() PointerA {
 	return &pointA{}
 }
