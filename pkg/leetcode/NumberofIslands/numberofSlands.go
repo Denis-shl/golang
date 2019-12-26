@@ -20,8 +20,7 @@ func rec(grid [][]byte, i int, j int) {
 	}
 }
 
-// NumIslands ...
-func NumIslands(grid [][]byte) int {
+func numIslands(grid [][]byte) int {
 	var count int
 	for i, n := range grid {
 		for j, num := range n {
