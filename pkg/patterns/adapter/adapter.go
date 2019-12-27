@@ -1,7 +1,7 @@
 package adapter
 
-// Targer ...
-type Targer interface {
+// Purpose ...
+type Purpose interface {
 	Request() string
 }
 
@@ -15,6 +15,6 @@ func (a *adaptr) Request() string {
 }
 
 // NewAdapter ...
-func NewAdapter(obj *objA) Targer {
+func NewAdapter(obj *objA) Purpose {
 	return &adaptr{obj}
 }
