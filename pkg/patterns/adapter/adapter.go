@@ -1,21 +1,20 @@
 package adapter
 
-// Target ...
-type Target interface {
+// Targer ...
+type Targer interface {
 	Request() string
 }
 
-// Adapter ...
-type adapter struct {
+type adaptr struct {
 	*objA
 }
 
-// Request is an adaptive method.
-func (a *adapter) Request() string {
+// Request ...
+func (a *adaptr) Request() string {
 	return a.SpecificRequest()
 }
 
 // NewAdapter ...
-func NewAdapter(obj *objA) Target {
-	return &adapter{obj}
+func NewAdapter(obj *objA) Targer {
+	return &adaptr{obj}
 }
