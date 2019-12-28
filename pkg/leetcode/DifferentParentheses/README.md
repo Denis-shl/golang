@@ -16,7 +16,7 @@ Explanation:
 
 Example 2:
 
-Input: "2*3-4*5"
+Input: "2 * 3 - 4 * 5"
 
 Output: [-34, -14, -10, -10, 10]
 
