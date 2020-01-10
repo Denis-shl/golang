@@ -7,6 +7,43 @@ import (
 	"time"
 )
 
+// Worker ...
+type Worker interface {
+	StartJobs()
+	workerPool()
+}
+
+type foreman struct {
+	working      int
+	timeJobs     int
+	quantityJobs int
+}
+
+// StartJobs ...
+func (f *foreman) StartJobs() {
+	f.workerPool()
+}
+
+func (f *foreman) workerPool() {
+	result := make(chan map[int]int, f.working) // map[working][work complete]
+	jobs := make(chan int, f.quantityJobs)
+	w := sync.WaitGroup{}
+	for i := 1; i <= f.working; i++ {
+		w.Add(1)
+		go work(i, jobs, result, &w, f.timeJobs)
+	}
+	go func(jobs chan int, QuantityJobs int) {
+		defer close(jobs)
+
+		for i := 0; i < QuantityJobs; i++ {
+			jobs <- 1
+		}
+	}(jobs, f.quantityJobs)
+	w.Add(1)
+	go followWork(f.working, result, &w)
+	w.Wait() // ожидаем выполнения foreman
+}
+
 // work ...
 func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup, TimeJobs int) {
 	var x int
@@ -23,31 +60,18 @@ func work(id int, jobs chan int, res chan map[int]int, w *sync.WaitGroup, TimeJo
 	fmt.Println("the worker", id, "end to work")
 }
 
-// foreman ...
-func foreman(working int, result chan map[int]int, w *sync.WaitGroup) {
+func followWork(working int, result chan map[int]int, w *sync.WaitGroup) {
 	defer w.Done()
 	for i := 1; i <= working; i++ {
 		<-result
 	}
 }
 
-// workerPool ...
-func workerPool(working int, TimeJobs int, QuantityJobs int) {
-	result := make(chan map[int]int, working) // map[working][work complete]
-	jobs := make(chan int, QuantityJobs)
-	w := sync.WaitGroup{}
-	for i := 1; i <= working; i++ {
-		w.Add(1)
-		go work(i, jobs, result, &w, TimeJobs)
+// NewForeman ...
+func NewForeman(work, time, quantJobs int) Worker {
+	return &foreman{
+		working:      work,
+		timeJobs:     time,
+		quantityJobs: quantJobs,
 	}
-	go func(jobs chan int, QuantityJobs int) {
-		defer close(jobs)
-
-		for i := 0; i < QuantityJobs; i++ {
-			jobs <- 1
-		}
-	}(jobs, QuantityJobs)
-	w.Add(1)
-	go foreman(working, result, &w)
-	w.Wait() // ожидаем выполнения foreman
 }

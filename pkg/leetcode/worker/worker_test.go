@@ -5,11 +5,13 @@ import (
 )
 
 func BenchmarkSample(b *testing.B) {
-	QuantityJobs := 10
-	worker := 5
-	TimeJobs := 3
-
+	var (
+		quantityJobs int = 10
+		worker       int = 5
+		timeJobs     int = 3
+	)
+	foreman := NewForeman(worker, timeJobs,quantityJobs)
 	b.StartTimer()
-	workerPool(worker, TimeJobs, QuantityJobs)
+	foreman.StartJobs()
 	b.StopTimer()
 }
