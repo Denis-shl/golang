@@ -8,6 +8,7 @@ type Summator interface {
 type obj struct {
 }
 
+// TwoSum ...
 func (o *obj) TwoSum(nums []int, target int) []int {
 	hash := make(map[int]int)
 	l := len(nums)

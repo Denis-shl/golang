@@ -21,7 +21,7 @@ func (i *intersect) Intersection(nums1 []int, nums2 []int) []int {
 	return sl
 }
 
-func (i *intersect)contains(n int, s []int) int {
+func (i *intersect) contains(n int, s []int) int {
 	for i, number := range s {
 		if number == n {
 			return i

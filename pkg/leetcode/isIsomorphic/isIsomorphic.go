@@ -8,6 +8,7 @@ type Isomorphicer interface {
 type isomorphic struct {
 }
 
+// IsIsomorphic ...
 func (i *isomorphic) IsIsomorphic(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
