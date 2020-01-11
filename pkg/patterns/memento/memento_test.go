@@ -14,11 +14,13 @@ const (
 func TestMemento(t *testing.T) {
 	compA := NewTextEditorA()
 	storage := NewStorage()
+	
 	t.Run(testNotNil, func(t *testing.T) {
 		if !assert.NotNil(t, compA, storage) {
 			t.Errorf("error test not nil want not nil got: compA %v, storage %v", compA, storage)
 		}
 	})
+
 	t.Run(testBackup, func(t *testing.T) {
 		compA.SetMemento(storage)
 		compA.SetData(12)
