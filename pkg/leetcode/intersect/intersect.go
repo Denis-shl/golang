@@ -1,7 +1,7 @@
 package intersect
 
-// Traverse ...
-type Traverse interface {
+// Traverser ...
+type Traverser interface {
 	Intersection(nums1 []int, nums2 []int) []int
 }
 
@@ -30,7 +30,7 @@ func (i *intersect)contains(n int, s []int) int {
 	return -1
 }
 
-// NewIntersect ...
-func NewIntersect() Traverse {
+// NewTraverser ...
+func NewTraverser() Traverser {
 	return &intersect{}
 }

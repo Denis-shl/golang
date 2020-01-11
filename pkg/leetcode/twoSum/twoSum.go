@@ -2,13 +2,13 @@ package twosum
 
 // Summator ...
 type Summator interface {
-	twoSum(nums []int, target int) []int
+	TwoSum(nums []int, target int) []int
 }
 
 type obj struct {
 }
 
-func (o *obj) twoSum(nums []int, target int) []int {
+func (o *obj) TwoSum(nums []int, target int) []int {
 	hash := make(map[int]int)
 	l := len(nums)
 
@@ -27,7 +27,7 @@ func (o *obj) twoSum(nums []int, target int) []int {
 	return []int{}
 }
 
-// NewObj ...
-func NewObj() Summator {
+// NewSummator ...
+func NewSummator() Summator {
 	return &obj{}
 }

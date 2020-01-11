@@ -1,14 +1,14 @@
-package main
+package isomorphic
 
 // Isomorphicer ...
 type Isomorphicer interface {
-	isIsomorphic(s string, t string) bool
+	IsIsomorphic(s string, t string) bool
 }
 
 type isomorphic struct {
 }
 
-func (i *isomorphic) isIsomorphic(s string, t string) bool {
+func (i *isomorphic) IsIsomorphic(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
@@ -30,7 +30,7 @@ func (i *isomorphic) isIsomorphic(s string, t string) bool {
 	return true
 }
 
-// NewIsomoprhic ...
-func NewIsomoprhic() Isomorphicer {
+// NewIsomorphicer ...
+func NewIsomorphicer() Isomorphicer {
 	return &isomorphic{}
 }

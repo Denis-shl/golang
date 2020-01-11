@@ -7,10 +7,10 @@ import (
 )
 
 func TestTwoSum(t *testing.T) {
-	obj := NewObj()
+	obj := NewSummator()
 	t.Run("make the sums of tails of", func(t *testing.T) {
 		target := 8
-		got := obj.twoSum([]int{1, 2, 4, 4, 5, 6, 8, 9}, target)
+		got := obj.TwoSum([]int{1, 2, 4, 4, 5, 6, 8, 9}, target)
 		want := []int{1, 5}
 
 		if !assert.EqualValues(t, want, got) {
@@ -20,7 +20,7 @@ func TestTwoSum(t *testing.T) {
 
 	t.Run("make the sums of tails of", func(t *testing.T) {
 		target := 9
-		got := obj.twoSum([]int{1}, target)
+		got := obj.TwoSum([]int{1}, target)
 		want := []int{}
 
 		if !assert.EqualValues(t, want, got) {

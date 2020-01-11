@@ -11,7 +11,7 @@ const (
 )
 
 func TestIntersect(t *testing.T) {
-	obj := NewIntersect()
+	obj := NewTraverser()
 	t.Run(testIntersect, func(t *testing.T) {
 		var (
 			nums1 = []int{1, 2, 2, 1}
