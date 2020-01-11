@@ -8,33 +8,32 @@ type Originator interface {
 	SetBackup()
 }
 
-// TextEditorA ...
-type TextEditorA struct {
+type textEditorA struct {
 	Memento
 	data int
 }
 
 // SetMemento ...
-func (t *TextEditorA) SetMemento(memento Memento) {
+func (t *textEditorA) SetMemento(memento Memento) {
 	t.Memento = memento
 }
 
 // SetData ...
-func (t *TextEditorA) SetData(x int) {
+func (t *textEditorA) SetData(x int) {
 	t.data = x
 }
 
 // SetBackup ...
-func (t *TextEditorA) SetBackup() {
+func (t *textEditorA) SetBackup() {
 	t.Memento.SetBackup(t.data)
 }
 
 // BackBackup ...
-func (t *TextEditorA) BackBackup() int {
+func (t *textEditorA) BackBackup() int {
 	return t.Memento.GetBackup()
 }
 
 // NewTextEditorA ...
 func NewTextEditorA() Originator {
-	return &TextEditorA{data: 0}
+	return &textEditorA{data: 0}
 }

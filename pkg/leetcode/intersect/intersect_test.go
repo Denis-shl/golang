@@ -1,8 +1,9 @@
 package intersect
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -18,7 +19,7 @@ func TestIntersect(t *testing.T) {
 		)
 		want := []int{2, 2}
 		got := obj.Intersection(nums1, nums2)
-		if !reflect.DeepEqual(want, got) {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("error test intersect want %v got %v", want, got)
 		}
 	})

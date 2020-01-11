@@ -2,6 +2,8 @@ package main
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestIslsomorphis(t *testing.T) {
@@ -11,7 +13,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "bar"
 		want := false
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
@@ -21,7 +23,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "ab"
 		want := false
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
@@ -31,7 +33,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "sad"
 		want := false
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
@@ -41,7 +43,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "add"
 		want := true
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
@@ -51,7 +53,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "paper"
 		want := true
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})
@@ -61,7 +63,7 @@ func TestIslsomorphis(t *testing.T) {
 		str2 := "paper"
 		want := false
 		got := obj.isIsomorphic(str1, str2)
-		if want != got {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want %v", got, want)
 		}
 	})

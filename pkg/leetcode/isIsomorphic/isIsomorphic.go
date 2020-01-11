@@ -12,7 +12,6 @@ func (i *isomorphic) isIsomorphic(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
-
 	hash := make(map[int8]int8)
 	hashCheck := make(map[int8]int8)
 	for i, num := range s {

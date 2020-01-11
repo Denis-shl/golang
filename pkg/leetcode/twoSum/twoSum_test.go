@@ -1,8 +1,9 @@
 package twosum
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestTwoSum(t *testing.T) {
@@ -12,7 +13,7 @@ func TestTwoSum(t *testing.T) {
 		got := obj.twoSum([]int{1, 2, 4, 4, 5, 6, 8, 9}, target)
 		want := []int{1, 5}
 
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
@@ -22,7 +23,7 @@ func TestTwoSum(t *testing.T) {
 		got := obj.twoSum([]int{1}, target)
 		want := []int{}
 
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
