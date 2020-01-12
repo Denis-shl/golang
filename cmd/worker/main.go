@@ -14,7 +14,7 @@ func getObj() worker {
 		TimeJobs     int = 5
 		QuantityJobs int = 10
 	)
-	return work.NewForeman(CountWorking, TimeJobs, QuantityJobs)
+	return work.NewWorker(CountWorking, TimeJobs, QuantityJobs)
 }
 
 func main() {

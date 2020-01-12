@@ -10,7 +10,7 @@ func BenchmarkSample(b *testing.B) {
 		worker       int = 5
 		timeJobs     int = 3
 	)
-	foreman := NewForeman(worker, timeJobs,quantityJobs)
+	foreman := NewWorker(worker, timeJobs,quantityJobs)
 	b.StartTimer()
 	foreman.StartJobs()
 	b.StopTimer()

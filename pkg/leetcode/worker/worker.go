@@ -10,7 +10,6 @@ import (
 // Worker ...
 type Worker interface {
 	StartJobs()
-	workerPool()
 }
 
 type foreman struct {
@@ -67,8 +66,8 @@ func followWork(working int, result chan map[int]int, w *sync.WaitGroup) {
 	}
 }
 
-// NewForeman ...
-func NewForeman(work, time, quantJobs int) Worker {
+// NewWorker creating a foreman
+func NewWorker(work, time, quantJobs int) Worker {
 	return &foreman{
 		working:      work,
 		timeJobs:     time,
