@@ -16,8 +16,8 @@ const (
 )
 
 func Test_set(t *testing.T) {
-	got := NewSet()
-	sets := NewSet()
+	got := NewSetter()
+	sets := NewSetter()
 	sets.Add(1, 2, 3)
 	t.Run(testAdd, func(t *testing.T) {
 		got.Add(1, 2, 3)
@@ -42,7 +42,7 @@ func Test_set(t *testing.T) {
 	})
 
 	t.Run(testUnion, func(t *testing.T) {
-		s := NewSet()
+		s := NewSetter()
 		s = got.Union(sets)
 		want := []int{2, 3}
 		if !assert.EqualValues(t, s.GetData(), want) {
@@ -50,9 +50,9 @@ func Test_set(t *testing.T) {
 		}
 	})
 	t.Run(testIntersection, func(t *testing.T) {
-		got = NewSet()
+		got = NewSetter()
 		got.Add(1, 2, 3, 4)
-		sets = NewSet()
+		sets = NewSetter()
 		sets.Add(3, 4)
 		got = got.Intersection(sets)
 		gotData := got.GetData()
@@ -62,9 +62,9 @@ func Test_set(t *testing.T) {
 		}
 	})
 	t.Run(testDifference, func(t *testing.T) {
-		got = NewSet()
+		got = NewSetter()
 		got.Add(1, 2, 3, 4)
-		sets = NewSet()
+		sets = NewSetter()
 		sets.Add(3, 4)
 		got = got.Difference(sets)
 		gotData := got.GetData()

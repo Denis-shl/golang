@@ -65,7 +65,7 @@ func (s *set) Intersection(w Setter) Setter {
 
 // Difference returns a set that is different current with the specified.
 func (s *set) Difference(w Setter) Setter {
-	setNew := new(set)
+	setNew := &set{}
 	for _, number := range s.data {
 		if w.Contains(number) == false {
 			setNew.Add(number)
@@ -79,8 +79,8 @@ func (s *set) GetData() []int {
 	return s.data
 }
 
-// NewSet ...
-func NewSet() Setter {
+// NewSetter ...
+func NewSetter() Setter {
 	s := &set{}
 	return s
 }
