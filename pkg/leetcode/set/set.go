@@ -1,5 +1,16 @@
 package set
 
+// Setter ...
+type Setter interface {
+	Add(n ...int)
+	Contains(n int) bool
+	Deleted(n ...int)
+	Union(w Setter) Setter
+	Intersection(w Setter) Setter
+	Difference(w Setter) Setter
+	GetData() []int
+}
+
 // set ...
 type set struct {
 	data []int
@@ -34,15 +45,16 @@ func (s *set) Deleted(n ...int) {
 }
 
 // Union ...
-func (s *set) Union(w *set) *set {
-	setNew := s
-	setNew.Add(w.data[0:]...)
+func (s *set) Union(w Setter) Setter {
+	setNew := &set{}
+	data := s.GetData()
+	setNew.Add(data[0:]...)
 	return setNew
 }
 
 // Intersection returns the set obtained by the operation of intersecting it with the specified one.
-func (s *set) Intersection(w *set) *set {
-	setNew := new(set)
+func (s *set) Intersection(w Setter) Setter {
+	setNew := &set{}
 	for _, number := range s.data {
 		if w.Contains(number) == true {
 			setNew.Add(number)
@@ -52,7 +64,7 @@ func (s *set) Intersection(w *set) *set {
 }
 
 // Difference returns a set that is different current with the specified.
-func (s *set) Difference(w *set) *set {
+func (s *set) Difference(w Setter) Setter {
 	setNew := new(set)
 	for _, number := range s.data {
 		if w.Contains(number) == false {
@@ -62,8 +74,13 @@ func (s *set) Difference(w *set) *set {
 	return setNew
 }
 
+// GetData ...
+func (s *set) GetData() []int {
+	return s.data
+}
+
 // NewSet ...
-func NewSet() *set {
+func NewSet() Setter {
 	s := &set{}
 	return s
 }
