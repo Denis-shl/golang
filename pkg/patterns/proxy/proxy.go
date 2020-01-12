@@ -1,31 +1,39 @@
 package proxy
 
-// Subject provides an interface for a real subject and its surrogate.
-type Subject interface {
-	putName(string)
-	getName() string
+import (
+	real "github.com/Denis-shl/golang/pkg/patterns/realObject"
+)
+
+// Proxer ...
+type Proxer interface {
+	SetName(str string)
+	GetName() string
 }
 
-// Proxy ...
-type Proxy struct {
-	realSubject Subject
+type proxy struct {
+	realSubject real.Objective
 }
 
-// PutName put a name in a  proxy object
-func (p *Proxy) PutName(x string) {
+// SetName put a name in a  proxy object
+func (p *proxy) SetName(str string) {
 	p.getRealObj()
-	p.realSubject.putName(x)
+	p.realSubject.SetName(str)
 }
 
 // GetName getting proxy name
-func (p *Proxy) GetName() string {
+func (p *proxy) GetName() string {
 	p.getRealObj()
-	return p.realSubject.getName()
+	return p.realSubject.GetName()
 }
 
 // getRealObj getting a real object
-func (p *Proxy) getRealObj() {
+func (p *proxy) getRealObj() {
 	if p.realSubject == nil {
-		p.realSubject = &realSubject{}
+		p.realSubject = real.NewObjective()
 	}
+}
+
+// NewProxer ...
+func NewProxer() Proxer {
+	return &proxy{}
 }

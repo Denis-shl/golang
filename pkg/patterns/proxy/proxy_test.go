@@ -1,8 +1,9 @@
 package proxy
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -11,9 +12,9 @@ const (
 
 func TestProxy(t *testing.T) {
 	t.Run(testProxy, func(t *testing.T) {
-		x := Proxy{}
+		x := NewProxer()
 		want := "string one"
-		x.PutName("string one")
+		x.SetName("string one")
 		got := x.GetName()
 		if !assert.EqualValues(t, want, got) {
 			t.Errorf("testing error want %v got %v", want, got)
