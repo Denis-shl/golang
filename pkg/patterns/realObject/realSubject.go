@@ -11,12 +11,12 @@ type realSubject struct {
 	name string
 }
 
-// putName put a name in a real object
+// SetName put a name in a real object
 func (r *realSubject) SetName(str string) {
 	r.name = str
 }
 
-// getName getting name
+// GetName getting name
 func (r *realSubject) GetName() string {
 	return r.name
 }
