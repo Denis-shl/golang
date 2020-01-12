@@ -5,8 +5,10 @@ import (
 )
 
 // Global variable
-var instance *singleton
-var once sync.Once
+var (
+	instance *singleton
+	once     sync.Once
+)
 
 //Singleton is an interface
 type Singleton interface {
@@ -18,14 +20,6 @@ type Singleton interface {
 type singleton struct {
 	sync.Mutex
 	count int
-}
-
-// GetInstance object creation
-func GetInstance() Singleton {
-	once.Do(func() {
-		instance = new(singleton)
-	})
-	return instance
 }
 
 // Add increase counter by 1
@@ -45,4 +39,12 @@ func (p *singleton) Done() {
 // GetValue receiving count
 func (p *singleton) GetValue() int {
 	return p.count
+}
+
+// NewSingleton object creation
+func NewSingleton() Singleton {
+	once.Do(func() {
+		instance = &singleton{}
+	})
+	return instance
 }
