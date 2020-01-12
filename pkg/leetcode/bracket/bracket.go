@@ -52,7 +52,6 @@ func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
 		}
 	}
 	return stack, false
-
 }
 
 // NewHandler ...
