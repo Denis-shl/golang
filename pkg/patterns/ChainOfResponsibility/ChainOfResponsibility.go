@@ -1,4 +1,4 @@
-package chainOfRes
+package chainofres
 
 // Handler ...
 type Handler interface {

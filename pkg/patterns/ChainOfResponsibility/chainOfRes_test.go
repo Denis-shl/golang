@@ -1,8 +1,9 @@
-package chainOfRes
+package chainofres
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (

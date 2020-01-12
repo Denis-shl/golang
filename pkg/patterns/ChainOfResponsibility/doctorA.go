@@ -1,4 +1,4 @@
-package chainOfRes
+package chainofres
 
 type doctorA struct {
 	name string
@@ -10,9 +10,8 @@ func (p *doctorA) Treat(name string) bool {
 	if name != "A" {
 		if p.next != nil {
 			return p.next.Treat(name)
-		} else {
-			return false
 		}
+		return false
 	}
 	return true
 }
@@ -20,7 +19,7 @@ func (p *doctorA) Treat(name string) bool {
 // NewHandlerA ...
 func NewHandlerA(next Handler) Handler {
 	if next == nil {
-		return &Default{}
+		return NewDefaulter()
 	}
 	return &doctorA{next: next}
 }

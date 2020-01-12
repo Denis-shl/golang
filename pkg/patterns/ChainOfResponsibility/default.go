@@ -1,13 +1,21 @@
-package chainOfRes
+package chainofres
 
 import "fmt"
 
-// Default ...
-type Default struct {
+// Defaulter ...
+type Defaulter interface{
+	Treat(name string) bool
+}
+type defaul struct {
 }
 
 // Treat ...
-func (p *Default) Treat(name string) bool {
+func (p *defaul) Treat(name string) bool {
 	fmt.Println("couldn't find a doctor")
 	return false
+}
+
+// NewDefaulter ...
+func NewDefaulter() Defaulter{
+	return &defaul{}
 }
