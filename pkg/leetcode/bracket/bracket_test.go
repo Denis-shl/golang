@@ -2,6 +2,8 @@ package bracket
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -13,43 +15,45 @@ const (
 )
 
 func TestIsValid(t *testing.T) {
+	obj := NewHandler()
+
 	t.Run(testNotValid, func(t *testing.T) {
 		str := "()(()()()"
-		got := isValid(str)
+		got := obj.IsValid(str)
 		want := false
-		if got != want {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
 	t.Run(testValidOne, func(t *testing.T) {
 		str := "()()(){}[]"
-		got := isValid(str)
+		got := obj.IsValid(str)
 		want := true
-		if want != got {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
 	t.Run(testValidTwo, func(t *testing.T) {
 		str := ""
-		got := isValid(str)
+		got := obj.IsValid(str)
 		want := true
-		if want != got {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
 	t.Run(testValidThree, func(t *testing.T) {
 		str := "(("
-		got := isValid(str)
+		got := obj.IsValid(str)
 		want := false
-		if want != got {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
 	t.Run(testValidFour, func(t *testing.T) {
 		str := "))"
-		got := isValid(str)
+		got := obj.IsValid(str)
 		want := false
-		if want != got {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
