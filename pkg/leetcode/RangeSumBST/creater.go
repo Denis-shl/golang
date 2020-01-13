@@ -21,7 +21,7 @@ type treeNode struct {
 	right Creater
 }
 
-// SetValue ...
+// CreateTree ...
 func (t *treeNode) CreateTree(n []int) Creater {
 	newTree := NewCreater()
 	head := newTree
@@ -58,21 +58,6 @@ func (t *treeNode) CreateTree(n []int) Creater {
 	return head
 }
 
-// SetLeft ...
-func (t *treeNode) setLeft(left Creater) {
-	t.left = left
-}
-
-// SetRight ...
-func (t *treeNode) setRight(right Creater) {
-	t.right = right
-}
-
-// SetVal ...
-func (t *treeNode) setVal(num int) {
-	t.val = num
-}
-
 // GetRight ...
 func (t *treeNode) GetRight() Creater {
 	return t.right
@@ -86,6 +71,18 @@ func (t *treeNode) GetVal() int {
 // GetLeft ...
 func (t *treeNode) GetLeft() Creater {
 	return t.left
+}
+
+func (t *treeNode) setLeft(left Creater) {
+	t.left = left
+}
+
+func (t *treeNode) setRight(right Creater) {
+	t.right = right
+}
+
+func (t *treeNode) setVal(num int) {
+	t.val = num
 }
 
 // NewCreater ...
