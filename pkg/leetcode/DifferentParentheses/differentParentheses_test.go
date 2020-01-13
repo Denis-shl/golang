@@ -1,8 +1,9 @@
 package diffways
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -19,7 +20,7 @@ func TestDiffWaysToCompute(t *testing.T) {
 	t.Run(testOne, func(t *testing.T) {
 		want := []int{2, 0}
 		got := obj.DiffWaysToCompute(str1)
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("error test one want %v got %v", want, got)
 		}
 	})
@@ -27,7 +28,7 @@ func TestDiffWaysToCompute(t *testing.T) {
 	t.Run(testTwo, func(t *testing.T) {
 		want := []int{-34, -10, -14, -10, 10}
 		got := obj.DiffWaysToCompute(str2)
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("error test two want %v, got %v", want, got)
 		}
 	})
