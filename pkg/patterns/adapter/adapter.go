@@ -14,7 +14,7 @@ func (a *adaptr) Request() string {
 	return a.SpecificRequest()
 }
 
-// NewAdapter ...
-func NewAdapter(obj Describe) Purpose {
+// NewPursone ...
+func NewPursone(obj Describe) Purpose {
 	return &adaptr{obj}
 }
