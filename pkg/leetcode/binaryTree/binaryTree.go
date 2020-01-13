@@ -19,7 +19,7 @@ func (o *obj) MergeTrees(t1, t2 Creater) Creater {
 	var t3 Creater
 
 	t3 = NewCreater()
-	t3.SetV(t2.GetVal() + t1.GetVal())
+	t3.SetVal(t2.GetVal() + t1.GetVal())
 	if t1.GetLeft() != nil {
 		if t2.GetLeft() != nil {
 			t3.SetLeft(o.MergeTrees(t1.GetLeft(), t1.GetRight()))

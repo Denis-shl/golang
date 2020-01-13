@@ -10,7 +10,7 @@ type Creater interface {
 	GetRight() Creater
 	SetLeft(left Creater)
 	SetRight(right Creater)
-	SetV(num int)
+	SetVal(num int)
 }
 
 type treeNode struct {
@@ -25,8 +25,8 @@ func (t *treeNode) SetValue(n []int) Creater {
 	head := newTree
 	for i, num := range n {
 		newTree = head
-		if i == 0{
-			newTree.SetV(num)
+		if i == 0 {
+			newTree.SetVal(num)
 			continue
 		}
 		for {
@@ -36,7 +36,7 @@ func (t *treeNode) SetValue(n []int) Creater {
 					newTree = newTree.GetLeft()
 				} else {
 					node := NewCreater()
-					node.SetV(num)
+					node.SetVal(num)
 					newTree.SetLeft(node)
 					break
 				}
@@ -46,7 +46,7 @@ func (t *treeNode) SetValue(n []int) Creater {
 					newTree = newTree.GetRight()
 				} else {
 					node := NewCreater()
-					node.SetV(num)
+					node.SetVal(num)
 					newTree.SetRight(node)
 					break
 				}
@@ -54,11 +54,6 @@ func (t *treeNode) SetValue(n []int) Creater {
 		}
 	}
 	return head
-}
-
-// GetLeft ...
-func (t *treeNode) GetLeft() Creater {
-	return t.left
 }
 
 // SetLeft ...
@@ -71,19 +66,24 @@ func (t *treeNode) SetRight(right Creater) {
 	t.right = right
 }
 
+// SetVal ...
+func (t *treeNode) SetVal(num int) {
+	t.val = num
+}
+
 // GetRight ...
 func (t *treeNode) GetRight() Creater {
 	return t.right
 }
 
-// SetV ...
-func (t *treeNode) SetV(num int) {
-	t.val = num
-}
-
 // GetCal ...
 func (t *treeNode) GetVal() int {
 	return t.val
+}
+
+// GetLeft ...
+func (t *treeNode) GetLeft() Creater {
+	return t.left
 }
 
 // NewCreater ...
