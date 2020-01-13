@@ -1,30 +1,30 @@
-package main
+package twosum
 
 import (
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
-import "reflect"
 
 func TestTwoSum(t *testing.T) {
-
-	t.Run("make the sums of tails of", func(t *testing.T){
+	obj := NewSummator()
+	t.Run("make the sums of tails of", func(t *testing.T) {
 		target := 8
-		got := twoSum([]int {1,2,4,4,5,6,8,9}, target)
-		want := []int {1, 5}
+		got := obj.TwoSum([]int{1, 2, 4, 4, 5, 6, 8, 9}, target)
+		want := []int{1, 5}
 
-		if !reflect.DeepEqual(got, want) {
-		t.Errorf("got %v want  %v", got, want)
-	}
+		if !assert.EqualValues(t, want, got) {
+			t.Errorf("got %v want  %v", got, want)
+		}
 	})
 
-	t.Run("make the sums of tails of", func(t *testing.T){
+	t.Run("make the sums of tails of", func(t *testing.T) {
 		target := 9
-		got := twoSum([]int {1}, target)
+		got := obj.TwoSum([]int{1}, target)
 		want := []int{}
 
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("got %v want  %v", got, want)
 		}
 	})
 }
-
