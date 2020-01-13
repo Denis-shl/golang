@@ -12,6 +12,7 @@ type Handler interface {
 type obj struct {
 }
 
+// DiffWaysToCompute ...
 func (o *obj) DiffWaysToCompute(input string) []int {
 	var (
 		res, res1, res2 []int
