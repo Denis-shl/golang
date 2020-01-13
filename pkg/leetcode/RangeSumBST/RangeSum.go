@@ -1,29 +1,31 @@
-package rangeSum
+package rangesum
 
-import "fmt"
+// Handler ...
+type Handler interface {
+	RangeSumBST(root Creater, L int, R int) int
+}
 
-// TreeNode ...
-type TreeNode struct {
-	Val   int
-	Left  *TreeNode
-	Right *TreeNode
+type obj struct {
 }
 
 // rangeSumBST ...
-func rangeSumBST(root *TreeNode, L int, R int) int {
+func (o *obj) RangeSumBST(root Creater, L int, R int) int {
 	var sum int
 	if root != nil {
-		if root.Val <= L && root.Val <= R {
-			sum += root.Val
+		if root.GetVal() <= L && root.GetVal() <= R {
+			sum += root.GetVal()
 		}
-		if root.Val < L {
-			fmt.Println(root.Val)
-			sum += rangeSumBST(root.Left, L, R)
+		if root.GetVal() < L {
+			sum += o.RangeSumBST(root.GetLeft(), L, R)
 		}
-		if root.Val < R {
-			fmt.Println(root.Val)
-			sum += rangeSumBST(root.Right, L, R)
+		if root.GetVal() < R {
+			sum += o.RangeSumBST(root.GetRight(), L, R)
 		}
 	}
 	return sum
+}
+
+// NewHandler ...
+func NewHandler() Handler {
+	return &obj{}
 }

@@ -16,13 +16,13 @@ func (s *senderA) SetMediator(mediator Mediator) {
 	s.mediator = mediator
 }
 
-// NewSenderA ...
-func NewSenderA() Performer {
-	return &senderA{}
-}
-
 // speak ...
 func (s *senderA) speak() string {
 	fmt.Println("i senderA")
 	return "i senderA"
+}
+
+// NewSenderA ...
+func NewSenderA() Performer {
+	return &senderA{}
 }
