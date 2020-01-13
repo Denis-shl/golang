@@ -1,10 +1,18 @@
-package diffWaysToCompute
+package diffways
 
 import (
 	"strconv"
 )
 
-func diffWaysToCompute(input string) []int {
+// Handler ...
+type Handler interface {
+	DiffWaysToCompute(input string) []int
+}
+
+type obj struct {
+}
+
+func (o *obj) DiffWaysToCompute(input string) []int {
 	var (
 		res, res1, res2 []int
 		str1, str2      []rune
@@ -14,8 +22,8 @@ func diffWaysToCompute(input string) []int {
 		if num == '-' || num == '+' || num == '*' {
 			str1 := append(str1, str[:i]...)
 			str2 := append(str2, str[i+1:]...)
-			res1 = diffWaysToCompute(string(str1))
-			res2 = diffWaysToCompute(string(str2))
+			res1 = o.DiffWaysToCompute(string(str1))
+			res2 = o.DiffWaysToCompute(string(str2))
 			for _, n1 := range res1 {
 				for _, n2 := range res2 {
 					if num == '-' {
@@ -34,4 +42,9 @@ func diffWaysToCompute(input string) []int {
 		res = append(res, x)
 	}
 	return res
+}
+
+// NewHandler ...
+func NewHandler() Handler {
+	return &obj{}
 }
