@@ -16,4 +16,5 @@
 #
 # My ignore
 *main.go
+!/cmd/mergetree/main.go
 

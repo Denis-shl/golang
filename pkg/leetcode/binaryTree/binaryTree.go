@@ -1,71 +1,49 @@
-package mergeethree
+package mergeetree
 
-import "fmt"
-
-// Node ...
-type Node interface {
-	MergeTrees(t1 *treeNode) Node
+// Handler ...
+type Handler interface {
+	MergeTrees(t1, t2 Creater) Creater
 }
 
-// Merger ...
-type Merger interface {
+type obj struct {
 }
 
-type merge struct {
-}
-
-func (m *merge) M(t1, t2 *treeNode) Merger {
-	x := mergeTrees(t1, t2)
-
-	x.Val = 10
-	fmt.Println(x.Val)
-	return x
-}
-
-type treeNode struct {
-	Val   int
-	Left  *treeNode
-	Right *treeNode
-}
-
-// mergeTrees ...
-func mergeTrees(t1, t2 *treeNode) *treeNode {
+// MergeTrees ...
+func (o *obj) MergeTrees(t1, t2 Creater) Creater {
 	if t1 == nil {
 		return t2
 	}
 	if t2 == nil {
 		return t1
 	}
-	var t3 treeNode
-	t3.Val = t2.Val + t1.Val
-	if t1.Left != nil {
-		if t2.Left != nil {
-			t3.Left = mergeTrees(t1.Left, t1.Right)
+	var t3 Creater
+
+	t3 = NewCreater()
+	t3.SetV(t2.GetVal() + t1.GetVal())
+	if t1.GetLeft() != nil {
+		if t2.GetLeft() != nil {
+			t3.SetLeft(o.MergeTrees(t1.GetLeft(), t1.GetRight()))
 		}
-		if t2.Left == nil {
-			t3.Left = mergeTrees(t1.Left, nil)
+		if t2.GetLeft() == nil {
+			t3.SetLeft(o.MergeTrees(t1.GetLeft(), nil))
 		}
 	} else {
-		t3.Left = mergeTrees(nil, t2.Left)
+		t3.SetLeft(o.MergeTrees(nil, t2.GetLeft()))
 	}
-	if t1.Right != nil {
-		if t2.Right != nil {
-			t3.Right = mergeTrees(t1.Right, t2.Right)
+	if t1.GetRight() != nil {
+		if t2.GetRight() != nil {
+			t3.SetRight(o.MergeTrees(t1.GetRight(), t2.GetRight()))
 		}
-		if t2.Right == nil {
-			t3.Right = mergeTrees(t1.Right, nil)
+		if t2.GetRight() == nil {
+			t3.SetRight(o.MergeTrees(t1.GetRight(), nil))
 		}
 	} else {
-		t3.Right = mergeTrees(nil, t2.Right)
+		t3.SetRight(o.MergeTrees(nil, t2.GetRight()))
 	}
-	return &t3
+	return t3
 }
 
-// NewQ ...
-func NewQ() Q{
-	return &merge{}
-}
-
-func NewNode () Node{
-	return 
+// NewHandler ...
+func NewHandler() Handler {
+	return &obj{}
 }
