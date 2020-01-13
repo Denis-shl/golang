@@ -1,6 +1,10 @@
 package adapter
 
-// objA ...
+// Describe ...
+type Describe interface {
+	SpecificRequest() string
+}
+
 type objA struct {
 }
 

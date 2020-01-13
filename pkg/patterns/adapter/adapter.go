@@ -6,7 +6,7 @@ type Purpose interface {
 }
 
 type adaptr struct {
-	*objA
+	Describe
 }
 
 // Request ...
@@ -15,6 +15,6 @@ func (a *adaptr) Request() string {
 }
 
 // NewAdapter ...
-func NewAdapter(obj *objA) Purpose {
+func NewAdapter(obj Describe) Purpose {
 	return &adaptr{obj}
 }

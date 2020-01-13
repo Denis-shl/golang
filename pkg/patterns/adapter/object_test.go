@@ -1,8 +1,9 @@
 package adapter
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -14,7 +15,7 @@ func TestAdapter(t *testing.T) {
 		adapter := NewAdapter(&objA{})
 		got := adapter.Request()
 		want := "Request"
-		if !reflect.DeepEqual(got, want) {
+		if !assert.EqualValues(t, got, want) {
 			t.Errorf("Error test want %v got %v", want, got)
 		}
 	})

@@ -1,8 +1,9 @@
 package recursive
 
 import (
-	"reflect"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -11,6 +12,7 @@ const (
 )
 
 func TestNumIslands(t *testing.T) {
+	obj := NewHandler()
 	t.Run(testNumIslandsOne, func(t *testing.T) {
 		grid := [][]byte{
 			0: {'1', '1', '0', '0', '0'},
@@ -19,8 +21,8 @@ func TestNumIslands(t *testing.T) {
 			3: {'0', '0', '0', '1', '1'},
 		}
 		want := 3
-		got := numIslands(grid)
-		if !reflect.DeepEqual(want, got) {
+		got := obj.NumIslands(grid)
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("error test func NumIsland want %v got %v", want, got)
 		}
 	})
@@ -36,8 +38,8 @@ func TestNumIslands(t *testing.T) {
 			6: {'1', '0', '1', '0', '0'},
 		}
 		want := 11
-		got := numIslands(grid)
-		if !reflect.DeepEqual(want, got) {
+		got := obj.NumIslands(grid)
+		if !assert.EqualValues(t, want, got) {
 			t.Errorf("error test func NumIsland want %v got %v", want, got)
 		}
 	})
