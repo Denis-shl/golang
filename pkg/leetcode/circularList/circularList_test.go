@@ -1,42 +1,45 @@
-package circularList
+package circularlist
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
-	testCycleList = "test Cycle list"
+	testCycleList    = "test Cycle list"
+	testNotCycleList = "test not Cycle list"
 )
 
-// ListNode ...
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-// Append  ...
-func (p *ListNode) Append(head *ListNode, listNew *ListNode) *ListNode {
-	tmp := &head
-	for {
-		if (*tmp).Next == nil {
-			(*tmp).Next = listNew
-			return head
-		}
-		tmp = &(*tmp).Next
-	}
-}
-
 func TestHasCycle(t *testing.T) {
+	list := NewLister()
+	obj := NewCycler()
+	head := list
 	t.Run(testCycleList, func(t *testing.T) {
-		head := &ListNode{}
 		for i := 0; i < 10; i++ {
-			listNew := &ListNode{}
-			head.Append(head, listNew)
+			listNew := NewLister()
+			list.SetList(listNew)
+			list = list.GetNext()
+			list.SetVal(i)
+			if i == 9 {
+				list.SetList(head)
+			}
 		}
-		head.Next.Next.Next.Next.Next.Next.Next.Next = head
-		got := hasCycle(head)
+		got := obj.HasCycle(head)
 		want := true
+		if !assert.EqualValues(t, got, want) {
+			t.Errorf("error test got %v  want %v", got, want)
+		}
+	})
+	t.Run(testNotCycleList, func(t *testing.T) {
+		for i := 0; i < 10; i++ {
+			listNew := NewLister()
+			list.SetList(listNew)
+			list = list.GetNext()
+			list.SetVal(i)
+		}
+		got := obj.HasCycle(head)
+		want := false
 		if !assert.EqualValues(t, got, want) {
 			t.Errorf("error test got %v  want %v", got, want)
 		}

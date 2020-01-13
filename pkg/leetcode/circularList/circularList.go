@@ -1,8 +1,16 @@
-package circularList
+package circularlist
 
-// hasCycle ...
-func hasCycle(head *ListNode) bool {
-	maps := make(map[*ListNode]int)
+// Cycler ...
+type Cycler interface {
+	HasCycle(head Lister) bool
+}
+
+type obj struct {
+}
+
+// HasCycle ...
+func (o *obj) HasCycle(head Lister) bool {
+	maps := make(map[Lister]int)
 	list := head
 	for {
 		if list == nil {
@@ -14,7 +22,12 @@ func hasCycle(head *ListNode) bool {
 				return true
 			}
 		}
-		list = list.Next
+		list = list.GetNext()
 	}
 	return false
+}
+
+// NewCycler ...
+func NewCycler() Cycler {
+	return &obj{}
 }
