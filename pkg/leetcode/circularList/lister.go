@@ -22,7 +22,7 @@ func (l *listNode) SetVal(num int) {
 	l.val = num
 }
 
-// GetNex ... 
+// GetNext ...
 func (l *listNode) GetNext() Lister {
 	return l.next
 }
