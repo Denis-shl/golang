@@ -1,8 +1,9 @@
-package addTwoNumbers
+package addtwonumbers
 
 import (
-	"github.com/stretchr/testify/assert"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 const (
@@ -11,22 +12,26 @@ const (
 )
 
 func TestAddTwoNumbers(t *testing.T) {
+	obj := NewHandler()
 	t.Run(testOneSuccess, func(t *testing.T) {
-		a := &ListNode{Val: 1, Next: nil}
-		b := &ListNode{Val: 9, Next: &ListNode{Val: 9}}
-		got := addTwoNumbers(a, b)
-		want := &ListNode{Val: 0, Next: &ListNode{Val: 0, Next: &ListNode{Val: 1}}}
+		a := NewLister()
+		a.SetVal(1)
+		b := NewLister()
+		b.SetVal(9)
+		b.SetList(NewLister())
+		b.GetNext().SetVal(9)
 
+		got := obj.AddTwoNumbers(a, b)
+		want := &listNode{val: 0, next: &listNode{val: 0, next: &listNode{val: 1}}}
 		if !assert.EqualValues(t, want, got) {
 			t.Errorf("error func addTwoNumbers want %v got %v", want, got)
 		}
 	})
 	t.Run(testTwoSuccess, func(t *testing.T) {
-		a := &ListNode{Val: 1, Next: &ListNode{Val: 9, Next: &ListNode{Val: 1}}}
-		b := &ListNode{Val: 9, Next: &ListNode{Val: 9}}
-		got := addTwoNumbers(a, b)
-		want := &ListNode{Val: 0, Next: &ListNode{Val: 9, Next: &ListNode{Val: 2,}}}
-
+		a := &listNode{val: 1, next: &listNode{val: 9, next: &listNode{val: 1}}}
+		b := &listNode{val: 9, next: &listNode{val: 9}}
+		got := obj.AddTwoNumbers(a, b)
+		want := &listNode{val: 0, next: &listNode{val: 9, next: &listNode{val: 2}}}
 		if !assert.EqualValues(t, want, got) {
 			t.Errorf("error func addTwoNumbers want %v got %v", want, got)
 		}

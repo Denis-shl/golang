@@ -1,35 +1,21 @@
-package addTwoNumbers
+package addtwonumbers
 
-// ListNode ...
-type ListNode struct {
-	Val  int
-	Next *ListNode
+// Handler ...
+type Handler interface {
+	AddTwoNumbers(l1 Lister, l2 Lister) Lister
 }
 
-// addList ...
-func addList(val int, head *ListNode) *ListNode {
-	next := head
-	if head == nil {
-		return &ListNode{Val: val}
-	}
-	for {
-		if next.Next == nil {
-			next.Next = &ListNode{Val: val}
-			return head
-		}
-		next = next.Next
-	}
-	return head
+type obj struct {
 }
 
-// addTwoNumbers ...
-func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
+// AddTwoNumbers ...
+func (o *obj) AddTwoNumbers(l1 Lister, l2 Lister) Lister {
 	var (
-		newList *ListNode
+		newList Lister
 		sum     int
 	)
 	for {
-		sum += l1.Val + l2.Val
+		sum += l1.GetVal() + l2.GetVal()
 		if sum >= 10 {
 			newList = addList(sum-10, newList)
 			sum = 1
@@ -37,23 +23,46 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 			newList = addList(sum, newList)
 			sum = 0
 		}
-		if l1.Next == nil && l2.Next == nil && sum == 0 {
+		if l1.GetNext() == nil && l2.GetNext() == nil && sum == 0 {
 			break
 		}
-		if l1.Next == nil && l2.Next == nil && sum == 1 {
+		if l1.GetNext() == nil && l2.GetNext() == nil && sum == 1 {
 			newList = addList(sum, newList)
 			break
 		}
-		if l1.Next != nil {
-			l1 = l1.Next
+		if l1.GetNext() != nil {
+			l1 = l1.GetNext()
 		} else {
-			l1.Val = 0
+			l1.SetVal(0)
 		}
-		if l2.Next != nil {
-			l2 = l2.Next
+		if l2.GetNext() != nil {
+			l2 = l2.GetNext()
 		} else {
-			l2.Val = 0
+			l2.SetVal(0)
 		}
 	}
 	return newList
+}
+
+func addList(val int, head Lister) Lister {
+	next := head
+	if head == nil {
+		list := NewLister()
+		list.SetVal(val)
+		return list
+	}
+	for {
+		if next.GetNext() == nil {
+			list := NewLister()
+			list.SetVal(val)
+			next.SetList(list)
+			return head
+		}
+		next = next.GetNext()
+	}
+}
+
+//NewHandler ...
+func NewHandler() Handler {
+	return &obj{}
 }
