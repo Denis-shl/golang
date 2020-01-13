@@ -36,10 +36,12 @@ func (l *listNode) GetArray(head Lister) []int {
 	}
 }
 
+// GetNext ...
 func (l *listNode) GetNext() Lister {
 	return l.next
 }
 
+// GetVal ...
 func (l *listNode) GetVal() int {
 	return l.val
 }
