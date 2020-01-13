@@ -2,23 +2,22 @@ package observer
 
 import "fmt"
 
-// ObserveA ...
-type ObserveA struct {
+type observeA struct {
 	data int64
 }
 
 // GetData ...
-func (s *ObserveA) GetData() int64 {
-	return s.data
+func (o *observeA) GetData() int64 {
+	return o.data
 }
 
 // Update ...
-func (s *ObserveA) Update(data int64) {
-	fmt.Printf("*** Observer %d получен: %d\n", s.data, data)
-	s.data = data
+func (o *observeA) Update(data int64) {
+	fmt.Printf("*** Observer %d получен: %d\n", o.data, data)
+	o.data = data
 }
 
 // NewObserveA ...
 func NewObserveA() Observer {
-	return &ObserveA{}
+	return &observeA{}
 }
