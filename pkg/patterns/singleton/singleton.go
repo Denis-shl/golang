@@ -10,7 +10,7 @@ var (
 	once     sync.Once
 )
 
-//Singleton is an interface
+// Singleton is an interface
 type Singleton interface {
 	Add()
 	Done()
