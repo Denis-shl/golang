@@ -76,7 +76,7 @@ func (t *treeNode) GetRight() Creater {
 	return t.right
 }
 
-// GetCal ...
+// GetVal ...
 func (t *treeNode) GetVal() int {
 	return t.val
 }
