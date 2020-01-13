@@ -1,6 +1,6 @@
 package factory
 
-// Producer...
+// Producer ...
 type Producer interface {
 	DoSomething() string
 }
