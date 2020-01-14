@@ -1,15 +1,15 @@
 package reverselist
 
-// Handler ...
-type Handler interface {
+// Reverse ...
+type Reverse interface {
 	ReverseList(head Lister) Lister
 }
 
-type obj struct {
+type list struct {
 }
 
 // ReverseList ...
-func (o *obj) ReverseList(head Lister) Lister {
+func (l *list) ReverseList(head Lister) Lister {
 	var (
 		current Lister
 		prev    Lister
@@ -26,7 +26,7 @@ func (o *obj) ReverseList(head Lister) Lister {
 	return prev
 }
 
-// NewHandler ...
-func NewHandler () Handler{
-	return &obj{}
+// NewReverse ...
+func NewReverse () Reverse{
+	return &list{}
 }

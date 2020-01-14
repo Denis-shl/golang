@@ -13,7 +13,7 @@ const (
 func TestReverseList(t *testing.T) {
 
 	list := NewLister()
-	obj := NewHandler()
+	obj := NewReverse()
 	head := list
 	t.Run(reverseListTest, func(t *testing.T) {
 		for i := 1; i < 10; i++ {
