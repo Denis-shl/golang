@@ -12,7 +12,7 @@ const (
 
 func TestAbstractFactory(t *testing.T) {
 	t.Run(testAbstractFactory, func(t *testing.T) {
-		x := NewConcrete()
+		x := NewEnterprise()
 		w := x.CreateProduct()
 		got := w.DoSomething()
 		want := "I am a PRODUCT A"

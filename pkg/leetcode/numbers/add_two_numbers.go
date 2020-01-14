@@ -63,7 +63,7 @@ func (a *addition) addList(val int, head Lister) Lister {
 	}
 }
 
-//NewCalculater ...
+// NewCalculater ...
 func NewCalculater() Calculater {
 	return &addition{}
 }

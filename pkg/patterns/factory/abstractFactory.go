@@ -8,7 +8,7 @@ func (c *concreteProductA) DoSomething() string {
 	return "I am a PRODUCT A"
 }
 
-// NewConcrete ...
-func NewConcrete() Enterprise {
+// NewEnterprise ...
+func NewEnterprise() Enterprise {
 	return &concreteFactoryA{}
 }
