@@ -8,25 +8,25 @@ type ConcreteNotify struct {
 }
 
 // Register ...
-func (s *ConcreteNotify) Register(sub Observer) {
-	if _, ok := s.data[sub]; ok {
+func (c *ConcreteNotify) Register(sub Observer) {
+	if _, ok := c.data[sub]; ok {
 		fmt.Println("already signed")
 		return
 	}
-	s.data[sub] = struct{}{}
+	c.data[sub] = struct{}{}
 }
 
 // Notify ...
-func (s *ConcreteNotify) Notify(x int64) {
-	for j, _ := range s.data {
+func (c *ConcreteNotify) Notify(x int64) {
+	for j, _ := range c.data {
 		j.Update(x)
 	}
 }
 
 // Deregister ...
-func (s *ConcreteNotify) Deregister(sub Observer) {
-	if _, ok := s.data[sub]; ok {
-		delete(s.data, sub)
+func (c *ConcreteNotify) Deregister(sub Observer) {
+	if _, ok := c.data[sub]; ok {
+		delete(c.data, sub)
 	}
 }
 
