@@ -1,4 +1,4 @@
-package object
+package proxy
 
 // Objective ...
 type Objective interface {

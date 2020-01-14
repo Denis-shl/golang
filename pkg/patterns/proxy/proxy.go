@@ -1,9 +1,5 @@
 package proxy
 
-import (
-	real "github.com/Denis-shl/golang/pkg/patterns/realObject"
-)
-
 // Proxer ...
 type Proxer interface {
 	SetName(str string)
@@ -11,7 +7,7 @@ type Proxer interface {
 }
 
 type proxy struct {
-	realSubject real.Objective
+	realSubject Objective
 }
 
 // SetName put a name in a  proxy object
@@ -29,7 +25,7 @@ func (p *proxy) GetName() string {
 // getRealObj getting a real object
 func (p *proxy) getRealObj() {
 	if p.realSubject == nil {
-		p.realSubject = real.NewObjective()
+		p.realSubject = NewObjective()
 	}
 }
 

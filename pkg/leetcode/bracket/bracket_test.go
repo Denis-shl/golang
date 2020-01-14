@@ -15,7 +15,7 @@ const (
 )
 
 func TestIsValid(t *testing.T) {
-	obj := NewHandler()
+	obj := NewValidater()
 
 	t.Run(testNotValid, func(t *testing.T) {
 		str := "()(()()()"
