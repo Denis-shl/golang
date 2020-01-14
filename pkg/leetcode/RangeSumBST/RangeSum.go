@@ -1,15 +1,15 @@
 package rangesum
 
-// Handler ...
-type Handler interface {
+// RangeTree ...
+type RangeTree interface {
 	RangeSumBST(root Creater, L int, R int) int
 }
 
-type obj struct {
+type tree struct {
 }
 
 // rangeSumBST ...
-func (o *obj) RangeSumBST(root Creater, L int, R int) int {
+func (o *tree) RangeSumBST(root Creater, L int, R int) int {
 	var sum int
 	if root != nil {
 		if root.GetVal() <= L && root.GetVal() <= R {
@@ -26,6 +26,6 @@ func (o *obj) RangeSumBST(root Creater, L int, R int) int {
 }
 
 // NewHandler ...
-func NewHandler() Handler {
-	return &obj{}
+func NewHandler() RangeTree {
+	return &tree{}
 }
