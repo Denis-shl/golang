@@ -16,7 +16,7 @@ func TestDiffWaysToCompute(t *testing.T) {
 		str1 string = "2-1-1"
 		str2 string = "2*3-4*5"
 	)
-	obj := NewHandler()
+	obj := NewCalculater()
 	t.Run(testOne, func(t *testing.T) {
 		want := []int{2, 0}
 		got := obj.DiffWaysToCompute(str1)

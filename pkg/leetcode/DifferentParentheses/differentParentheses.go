@@ -4,16 +4,16 @@ import (
 	"strconv"
 )
 
-// Handler ...
-type Handler interface {
+// Calculater ...
+type Calculater interface {
 	DiffWaysToCompute(input string) []int
 }
 
-type obj struct {
+type compute struct {
 }
 
 // DiffWaysToCompute ...
-func (o *obj) DiffWaysToCompute(input string) []int {
+func (c *compute) DiffWaysToCompute(input string) []int {
 	var (
 		res, res1, res2 []int
 		str1, str2      []rune
@@ -23,8 +23,8 @@ func (o *obj) DiffWaysToCompute(input string) []int {
 		if num == '-' || num == '+' || num == '*' {
 			str1 := append(str1, str[:i]...)
 			str2 := append(str2, str[i+1:]...)
-			res1 = o.DiffWaysToCompute(string(str1))
-			res2 = o.DiffWaysToCompute(string(str2))
+			res1 = c.DiffWaysToCompute(string(str1))
+			res2 = c.DiffWaysToCompute(string(str2))
 			for _, n1 := range res1 {
 				for _, n2 := range res2 {
 					if num == '-' {
@@ -45,7 +45,7 @@ func (o *obj) DiffWaysToCompute(input string) []int {
 	return res
 }
 
-// NewHandler ...
-func NewHandler() Handler {
-	return &obj{}
+// NewCalculater ...
+func NewCalculater() Calculater {
+	return &compute{}
 }
