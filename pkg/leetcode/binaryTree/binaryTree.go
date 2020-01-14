@@ -1,7 +1,7 @@
 package mergeetree
 
-// Merge ...
-type Merge interface {
+// TreeMerger ...
+type TreeMerger interface {
 	MergeTree(t1, t2 Creater) Creater
 }
 
@@ -43,7 +43,7 @@ func (o *tree) MergeTree(t1, t2 Creater) Creater {
 	return t3
 }
 
-// NewMerge ...
-func NewMerge() Merge {
+// NewTreeMerger ...
+func NewTreeMerger() TreeMerger {
 	return &tree{}
 }
