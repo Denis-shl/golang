@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	creater "github.com/Denis-shl/golang/pkg/leetcode/RangeSumBST"
+	creater "github.com/Denis-shl/golang/pkg/leetcode/rangesumbst"
 )
 
 func main() {
