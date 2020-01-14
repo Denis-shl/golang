@@ -1,7 +1,7 @@
 package bracket
 
-// Handler ...
-type Handler interface {
+// Validater ...
+type Validater interface {
 	IsValid(s string) bool
 }
 
@@ -16,10 +16,10 @@ func (b *bracket) IsValid(s string) bool {
 		return true
 	}
 	for _, saab := range s {
-		if openParenthesis(saab) == true {
+		if b.openParenthesis(saab) == true {
 			stack = append(stack, saab)
 		} else {
-			stack, ok = removeBrackets(stack, saab)
+			stack, ok = b.removeBrackets(stack, saab)
 			if ok == false {
 				return false
 			}
@@ -32,7 +32,7 @@ func (b *bracket) IsValid(s string) bool {
 }
 
 // openParenthesis check the bracket to make it open
-func openParenthesis(s rune) bool {
+func (b *bracket)openParenthesis(s rune) bool {
 	str := []rune{'(', '{', '['}
 	for _, saab := range str {
 		if saab == s {
@@ -43,7 +43,7 @@ func openParenthesis(s rune) bool {
 }
 
 // removeBrackets check the previous bracket to match the current one
-func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
+func (b *bracket)removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
 	i := len(stack)
 	if i > 0 {
 		if stack[i-1] == symbol-1 || stack[i-1] == symbol-2 { // the magic number is the difference between ASCII codes
@@ -54,7 +54,7 @@ func removeBrackets(stack []rune, symbol rune) ([]rune, bool) {
 	return stack, false
 }
 
-// NewHandler ...
-func NewHandler() Handler{
+// NewValidater ...
+func NewValidater() Validater{
 	return &bracket{}
 }
