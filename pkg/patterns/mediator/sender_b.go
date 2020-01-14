@@ -22,7 +22,7 @@ func (s *senderB) speak() string {
 	return "i senderB"
 }
 
-// NewSenderB ...
-func NewSenderB() Performer {
+// NewPerformerB ...
+func NewPerformerB() Performer {
 	return &senderB{}
 }

@@ -14,8 +14,8 @@ const (
 
 func TestMediator(t *testing.T) {
 	mediator := NewMediator()
-	senderA := NewSenderA()
-	senderB := NewSenderB()
+	senderA := NewPerformerA()
+	senderB := NewPerformerB()
 	senderA.SetMediator(mediator)
 	senderB.SetMediator(mediator)
 	mediator.SetConcrete(senderA, senderB)
