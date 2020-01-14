@@ -19,7 +19,7 @@ func (p *pointB) Accept(visitor Visitor) string {
 	return visitor.VisitPointB(p)
 }
 
-// NewPointB ...
-func NewPointB() PointerB {
+// NewPointerB ...
+func NewPointerB() PointerB {
 	return &pointB{}
 }

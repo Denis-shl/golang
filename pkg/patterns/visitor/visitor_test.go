@@ -14,7 +14,7 @@ func TestVisitor(t *testing.T) {
 	t.Run(testVisitorOne, func(t *testing.T) {
 		x := NewVisitor()
 		want := []string{"Point A", "Point B", "Point C"}
-		points := []Pointer{NewPointA(), NewPointB(), NewPointC()}
+		points := []Pointer{NewPointerA(), NewPointerB(), NewPointerC()}
 		for i, p := range points {
 			got := p.Accept(x)
 			if !assert.EqualValues(t, want[i], got) {
