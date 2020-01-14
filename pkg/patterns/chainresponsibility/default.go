@@ -10,7 +10,7 @@ type defaul struct {
 }
 
 // Treat ...
-func (p *defaul) Treat(name string) bool {
+func (d *defaul) Treat(name string) bool {
 	fmt.Println("couldn't find a doctor")
 	return false
 }

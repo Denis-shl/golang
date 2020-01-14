@@ -6,10 +6,10 @@ type doctorC struct {
 }
 
 // Treat ...
-func (p *doctorC) Treat(name string) bool {
+func (d *doctorC) Treat(name string) bool {
 	if name != "C" {
-		if p.next != nil {
-			return p.next.Treat(name)
+		if d.next != nil {
+			return d.next.Treat(name)
 		}
 		return false
 	}
