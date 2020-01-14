@@ -12,7 +12,7 @@ const (
 )
 
 func TestNumIslands(t *testing.T) {
-	obj := NewHandler()
+	obj := NewPainter()
 	t.Run(testNumIslandsOne, func(t *testing.T) {
 		grid := [][]byte{
 			0: {'1', '1', '0', '0', '0'},

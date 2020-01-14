@@ -1,15 +1,15 @@
 package recursive
 
-// Handler ...
-type Handler interface {
+// Painter ...
+type Painter interface {
 	NumIslands(grid [][]byte) int
 }
 
-type obj struct {
+type maping struct {
 }
 
 // NumIslands ...
-func (o *obj) NumIslands(grid [][]byte) int {
+func (m *maping) NumIslands(grid [][]byte) int {
 	var count int
 	for i, n := range grid {
 		for j, num := range n {
@@ -41,7 +41,7 @@ func rec(grid [][]byte, i int, j int) {
 	}
 }
 
-//NewHandler ...
-func NewHandler() Handler {
-	return &obj{}
+//NewPainter ...
+func NewPainter() Painter {
+	return &maping{}
 }
