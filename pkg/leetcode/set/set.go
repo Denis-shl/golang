@@ -81,6 +81,5 @@ func (s *set) GetData() []int {
 
 // NewSetter ...
 func NewSetter() Setter {
-	s := &set{}
-	return s
+	return &set{}
 }

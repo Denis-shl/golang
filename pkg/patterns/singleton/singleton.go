@@ -23,22 +23,22 @@ type singleton struct {
 }
 
 // Add increase counter by 1
-func (p *singleton) Add() {
-	p.Lock()
-	defer p.Unlock()
-	p.count++
+func (s *singleton) Add() {
+	s.Lock()
+	defer s.Unlock()
+	s.count++
 }
 
 // Done decrement the count
-func (p *singleton) Done() {
-	p.Lock()
-	defer p.Unlock()
-	p.count--
+func (s *singleton) Done() {
+	s.Lock()
+	defer s.Unlock()
+	s.count--
 }
 
 // GetValue receiving count
-func (p *singleton) GetValue() int {
-	return p.count
+func (s *singleton) GetValue() int {
+	return s.count
 }
 
 // NewSingleton object creation

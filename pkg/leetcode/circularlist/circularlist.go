@@ -5,11 +5,11 @@ type Cycler interface {
 	HasCycle(head Lister) bool
 }
 
-type obj struct {
+type list struct {
 }
 
 // HasCycle ...
-func (o *obj) HasCycle(head Lister) bool {
+func (l *list) HasCycle(head Lister) bool {
 	maps := make(map[Lister]int)
 	list := head
 	for {
@@ -29,5 +29,5 @@ func (o *obj) HasCycle(head Lister) bool {
 
 // NewCycler ...
 func NewCycler() Cycler {
-	return &obj{}
+	return &list{}
 }
