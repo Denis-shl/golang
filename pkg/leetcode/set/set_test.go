@@ -27,7 +27,7 @@ func Test_set(t *testing.T) {
 		}
 	})
 	t.Run(testDeleted, func(t *testing.T) {
-		got.Deleted(1)
+		got.Delete(1)
 		want := []int{2, 3}
 		if !assert.EqualValues(t, got.GetData(), want) {
 			t.Errorf("got %v want %v", got, want)

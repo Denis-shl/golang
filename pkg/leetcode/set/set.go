@@ -4,7 +4,7 @@ package set
 type Setter interface {
 	Add(n ...int)
 	Contains(n int) bool
-	Deleted(n ...int)
+	Delete(n ...int)
 	Union(w Setter) Setter
 	Intersection(w Setter) Setter
 	Difference(w Setter) Setter
@@ -35,8 +35,8 @@ func (s *set) Contains(n int) bool {
 	return false
 }
 
-// Deleted ...
-func (s *set) Deleted(n ...int) {
+// Delete ...
+func (s *set) Delete(n ...int) {
 	for i, number := range n {
 		if s.Contains(number) == true {
 			s.data = append(s.data[:i], s.data[i+1:]...)
