@@ -25,7 +25,7 @@ func (o *tree) RangeSumBST(root Creater, L int, R int) int {
 	return sum
 }
 
-// NewHandler ...
-func NewHandler() RangeTree {
+// NewRangeTree ...
+func NewRangeTree() RangeTree {
 	return &tree{}
 }
