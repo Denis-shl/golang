@@ -11,8 +11,8 @@ const (
 )
 
 func TestMemento(t *testing.T) {
-	compA := NewTextEditorA()
-	storage := NewStorage()
+	compA := NewOriginator()
+	storage := NewMemento()
 
 	t.Run(testBackup, func(t *testing.T) {
 		compA.SetMemento(storage)

@@ -5,14 +5,13 @@ type Summator interface {
 	TwoSum(nums []int, target int) []int
 }
 
-type obj struct {
+type add struct {
 }
 
 // TwoSum ...
-func (o *obj) TwoSum(nums []int, target int) []int {
+func (a *add) TwoSum(nums []int, target int) []int {
 	hash := make(map[int]int)
 	l := len(nums)
-
 	if l < 2 {
 		return []int{}
 	}
@@ -30,5 +29,5 @@ func (o *obj) TwoSum(nums []int, target int) []int {
 
 // NewSummator ...
 func NewSummator() Summator {
-	return &obj{}
+	return &add{}
 }

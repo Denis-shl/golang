@@ -27,7 +27,7 @@ func (s *storage) GetBackup() int {
 	return ret
 }
 
-// NewStorage ...
-func NewStorage() Memento {
+// NewMemento ...
+func NewMemento() Memento {
 	return &storage{}
 }

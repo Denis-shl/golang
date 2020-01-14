@@ -33,7 +33,7 @@ func (t *textEditorA) BackBackup() int {
 	return t.Memento.GetBackup()
 }
 
-// NewTextEditorA ...
-func NewTextEditorA() Originator {
+// NewOriginator ...
+func NewOriginator() Originator {
 	return &textEditorA{data: 0}
 }
