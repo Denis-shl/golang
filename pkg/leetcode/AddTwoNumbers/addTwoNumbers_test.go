@@ -12,7 +12,7 @@ const (
 )
 
 func TestAddTwoNumbers(t *testing.T) {
-	obj := NewHandler()
+	obj := NewCalculater()
 	t.Run(testOneSuccess, func(t *testing.T) {
 		a := NewLister()
 		a.SetVal(1)

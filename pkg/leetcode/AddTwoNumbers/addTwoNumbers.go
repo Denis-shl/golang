@@ -1,15 +1,16 @@
 package addtwonumbers
 
-// Handler ...
-type Handler interface {
+// Calculater ...
+type Calculater interface {
 	AddTwoNumbers(l1 Lister, l2 Lister) Lister
+	addList(val int, head Lister) Lister
 }
 
-type obj struct {
+type addition struct {
 }
 
 // AddTwoNumbers ...
-func (o *obj) AddTwoNumbers(l1 Lister, l2 Lister) Lister {
+func (a *addition) AddTwoNumbers(l1 Lister, l2 Lister) Lister {
 	var (
 		newList Lister
 		sum     int
@@ -17,17 +18,17 @@ func (o *obj) AddTwoNumbers(l1 Lister, l2 Lister) Lister {
 	for {
 		sum += l1.GetVal() + l2.GetVal()
 		if sum >= 10 {
-			newList = addList(sum-10, newList)
+			newList = a.addList(sum-10, newList)
 			sum = 1
 		} else {
-			newList = addList(sum, newList)
+			newList = a.addList(sum, newList)
 			sum = 0
 		}
 		if l1.GetNext() == nil && l2.GetNext() == nil && sum == 0 {
 			break
 		}
 		if l1.GetNext() == nil && l2.GetNext() == nil && sum == 1 {
-			newList = addList(sum, newList)
+			newList = a.addList(sum, newList)
 			break
 		}
 		if l1.GetNext() != nil {
@@ -44,7 +45,7 @@ func (o *obj) AddTwoNumbers(l1 Lister, l2 Lister) Lister {
 	return newList
 }
 
-func addList(val int, head Lister) Lister {
+func (a *addition) addList(val int, head Lister) Lister {
 	next := head
 	if head == nil {
 		list := NewLister()
@@ -62,7 +63,7 @@ func addList(val int, head Lister) Lister {
 	}
 }
 
-//NewHandler ...
-func NewHandler() Handler {
-	return &obj{}
+//NewCalculater ...
+func NewCalculater() Calculater {
+	return &addition{}
 }
