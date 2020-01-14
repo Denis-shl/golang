@@ -12,7 +12,7 @@ const (
 
 func TestAdapter(t *testing.T) {
 	t.Run(tesNewAdapter, func(t *testing.T) {
-		adapter := NewPursone(&objA{})
+		adapter := NewPursone(&companyA{})
 		got := adapter.Request()
 		want := "Request"
 		if !assert.EqualValues(t, got, want) {

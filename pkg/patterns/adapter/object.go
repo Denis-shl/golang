@@ -5,10 +5,10 @@ type Describe interface {
 	SpecificRequest() string
 }
 
-type objA struct {
+type companyA struct {
 }
 
 // SpecificRequest ...
-func (o *objA) SpecificRequest() string {
+func (c *companyA) SpecificRequest() string {
 	return "Request"
 }

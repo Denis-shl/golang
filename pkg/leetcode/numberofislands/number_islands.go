@@ -23,7 +23,7 @@ func (m *maping) NumIslands(grid [][]byte) int {
 	return count
 }
 
-func (m *maping)rec(grid [][]byte, i int, j int) {
+func (m *maping) rec(grid [][]byte, i int, j int) {
 	if grid[i][j] == 49 {
 		grid[i][j] = 48
 		if i != len(grid)-1 {
@@ -42,7 +42,7 @@ func (m *maping)rec(grid [][]byte, i int, j int) {
 	}
 }
 
-//NewPainter ...
+// NewPainter ...
 func NewPainter() Painter {
 	return &maping{}
 }
