@@ -8,7 +8,7 @@ type RangeTree interface {
 type tree struct {
 }
 
-// rangeSumBST ...
+// RangeSumBST ...
 func (t *tree) RangeSumBST(root Creater, L int, R int) int {
 	var sum int
 	if root != nil {
