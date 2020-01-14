@@ -9,7 +9,6 @@ import (
 func main() {
 	mas := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
 	tree := creater.NewCreater()
-
 	tree = tree.CreateTree(mas)
 	obj := creater.NewRangeTree()
 	res := obj.RangeSumBST(tree, 4, 10)
