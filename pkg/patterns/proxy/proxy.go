@@ -1,35 +1,38 @@
 package proxy
 
-// Proxer ...
-type Proxer interface {
-	SetName(str string)
-	GetName() string
+type (
+	queryName      = string
+	requestHistory = []string
+	response       = string
+)
+
+// Proxy ...
+type Proxy interface {
+	Request(str string) response
+	GetRequestHistory() requestHistory
+}
+
+type server interface {
+	Request(str string) response
 }
 
 type proxy struct {
-	realSubject Objective
+	server         server
+	requestHistory []queryName
 }
 
 // SetName put a name in a  proxy object
-func (p *proxy) SetName(str string) {
-	p.getRealObj()
-	p.realSubject.SetName(str)
+func (p *proxy) Request(str queryName) response {
+	p.requestHistory = append(p.requestHistory, str)
+	return p.server.Request(str)
 }
 
 // GetName getting proxy name
-func (p *proxy) GetName() string {
-	p.getRealObj()
-	return p.realSubject.GetName()
+func (p *proxy) GetRequestHistory() requestHistory {
+	return p.requestHistory
 }
 
-// getRealObj getting a real object
-func (p *proxy) getRealObj() {
-	if p.realSubject == nil {
-		p.realSubject = NewObjective()
-	}
-}
-
-// NewProxer ...
-func NewProxer() Proxer {
-	return &proxy{}
+// NewProxy ...
+func NewProxy(server server) Proxy {
+	return &proxy{server: server}
 }
