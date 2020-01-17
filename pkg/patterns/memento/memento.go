@@ -5,15 +5,14 @@ type (
 	data    = int
 )
 
+type storage struct {
+	backup []int
+}
+
 // memento ...
 type Memento interface {
 	SetNewCopy(data changes)
 	GetPreviousCopy() int
-}
-
-// storage ...
-type storage struct {
-	backup []int
 }
 
 // SetNewCopy ...

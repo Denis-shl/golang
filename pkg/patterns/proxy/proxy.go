@@ -1,30 +1,45 @@
 package proxy
 
+import "strings"
+
 type (
-	queryName      = string
 	requestHistory = []string
 	response       = string
+	request        = string
 )
+
+type server interface {
+	Request(request) response
+}
 
 // Proxy ...
 type Proxy interface {
-	Request(str string) response
+	Request(str request) response
 	GetRequestHistory() requestHistory
 }
 
-type server interface {
-	Request(str string) response
+type proxy struct {
+	apache         server
+	nginx          server
+	requestHistory []request
 }
 
-type proxy struct {
-	server         server
-	requestHistory []queryName
-}
+
 
 // Request ...
-func (p *proxy) Request(str queryName) response {
-	p.saveHistoryRequest(str)
-	return p.server.Request(str)
+func (p *proxy) Request(str request) (response response) {
+	p.requestHistory = append(p.requestHistory, str)
+
+	if strings.Contains(str, "nginx") == true && strings.Contains(str, "apache") == true {
+		return p.nginx.Request(str) + "," + p.apache.Request(str)
+	}
+	if strings.Contains(str, "nginx") == true {
+		return p.nginx.Request(str)
+	}
+	if strings.Contains(str, "apache") == true {
+		return p.apache.Request(str)
+	}
+	return "400"
 }
 
 // GetRequestHistory ...
@@ -32,11 +47,7 @@ func (p *proxy) GetRequestHistory() requestHistory {
 	return p.requestHistory
 }
 
-func (p *proxy) saveHistoryRequest(str queryName ) {
-	p.requestHistory = append(p.requestHistory, str)
-}
-
 // NewProxy ...
-func NewProxy(server server) Proxy {
-	return &proxy{server: server}
+func NewProxy(apache, nginx server) Proxy {
+	return &proxy{apache: apache, nginx: nginx}
 }
