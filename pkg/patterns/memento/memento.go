@@ -1,9 +1,14 @@
 package memento
 
-// Memento ...
+type (
+	changes = int
+	data    = int
+)
+
+// memento ...
 type Memento interface {
-	SetBackup(int)
-	GetBackup() int
+	SetNewCopy(data changes)
+	GetPreviousCopy() int
 }
 
 // storage ...
@@ -11,20 +16,22 @@ type storage struct {
 	backup []int
 }
 
-// SetBackup ...
-func (s *storage) SetBackup(x int) {
-	s.backup = append(s.backup, x)
+// SetNewCopy ...
+func (s *storage) SetNewCopy(data changes) {
+	s.backup = append(s.backup, data)
 }
 
-// GetBackup ...
-func (s *storage) GetBackup() int {
-	var ret int
-	l := len(s.backup)
-	if l >= 1 {
-		ret = s.backup[l-1]
-		s.backup = append(s.backup[:l-1])
+// GetPreviousCopy ...
+func (s *storage) GetPreviousCopy() data {
+	var previousCopy int
+
+	backupID := len(s.backup) - 1
+	if backupID >= 1 {
+		previousCopy = s.backup[backupID-1]
+		s.backup = append(s.backup[:backupID])
 	}
-	return ret
+	return previousCopy
+
 }
 
 // NewMemento ...

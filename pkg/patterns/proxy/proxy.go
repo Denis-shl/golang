@@ -21,15 +21,19 @@ type proxy struct {
 	requestHistory []queryName
 }
 
-// SetName put a name in a  proxy object
+// Request ...
 func (p *proxy) Request(str queryName) response {
-	p.requestHistory = append(p.requestHistory, str)
+	p.saveHistoryRequest(str)
 	return p.server.Request(str)
 }
 
-// GetName getting proxy name
+// GetRequestHistory ...
 func (p *proxy) GetRequestHistory() requestHistory {
 	return p.requestHistory
+}
+
+func (p *proxy) saveHistoryRequest(str queryName ) {
+	p.requestHistory = append(p.requestHistory, str)
 }
 
 // NewProxy ...
