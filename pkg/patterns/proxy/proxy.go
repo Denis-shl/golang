@@ -1,35 +1,53 @@
 package proxy
 
-// Proxer ...
-type Proxer interface {
-	SetName(str string)
-	GetName() string
+import "strings"
+
+type (
+	requestHistory = []string
+	response       = string
+	request        = string
+)
+
+type server interface {
+	Request(request) response
+}
+
+// Proxy ...
+type Proxy interface {
+	Request(str request) response
+	GetRequestHistory() requestHistory
 }
 
 type proxy struct {
-	realSubject Objective
+	apache         server
+	nginx          server
+	requestHistory []request
 }
 
-// SetName put a name in a  proxy object
-func (p *proxy) SetName(str string) {
-	p.getRealObj()
-	p.realSubject.SetName(str)
-}
 
-// GetName getting proxy name
-func (p *proxy) GetName() string {
-	p.getRealObj()
-	return p.realSubject.GetName()
-}
 
-// getRealObj getting a real object
-func (p *proxy) getRealObj() {
-	if p.realSubject == nil {
-		p.realSubject = NewObjective()
+// Request ...
+func (p *proxy) Request(str request) (response response) {
+	p.requestHistory = append(p.requestHistory, str)
+
+	if strings.Contains(str, "nginx") == true && strings.Contains(str, "apache") == true {
+		return p.nginx.Request(str) + "," + p.apache.Request(str)
 	}
+	if strings.Contains(str, "nginx") == true {
+		return p.nginx.Request(str)
+	}
+	if strings.Contains(str, "apache") == true {
+		return p.apache.Request(str)
+	}
+	return "400"
 }
 
-// NewProxer ...
-func NewProxer() Proxer {
-	return &proxy{}
+// GetRequestHistory ...
+func (p *proxy) GetRequestHistory() requestHistory {
+	return p.requestHistory
+}
+
+// NewProxy ...
+func NewProxy(apache, nginx server) Proxy {
+	return &proxy{apache: apache, nginx: nginx}
 }

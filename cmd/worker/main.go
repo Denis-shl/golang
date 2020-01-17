@@ -1,23 +1,17 @@
 package main
 
 import (
-	work "github.com/Denis-shl/golang/pkg/leetcode/worker"
+	"github.com/Denis-shl/golang/pkg/leetcode/worker/foreman"
+	"github.com/Denis-shl/golang/pkg/leetcode/worker/workers"
 )
 
-type worker interface {
-	StartJobs()
-}
-
-func getObj() worker {
-	var (
-		CountWorking int = 10
-		TimeJobs     int = 5
-		QuantityJobs int = 10
-	)
-	return work.NewWorker(CountWorking, TimeJobs, QuantityJobs)
-}
+var (
+	countWorking int = 5
+	quantityJobs int = 10
+)
 
 func main() {
-	obj := getObj()
-	obj.StartJobs()
+	newWorkers := workers.NewWorkers()
+	newForeman := foreman.NewForeman(newWorkers)
+	newForeman.Start(countWorking, quantityJobs)
 }
