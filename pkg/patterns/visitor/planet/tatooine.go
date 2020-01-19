@@ -4,26 +4,23 @@ type firstOrder interface {
 	Accept(visitor firstOrder) string
 }
 
-// PointerA ...
+// Planet ...
 type Planet interface {
-	NamePlanet() string
-	firstOrder
 }
 
 type planet struct {
+	visitor firstOrder
+	name    string
 }
 
-// NamePointA ...
-func (p *planet) NamePointA() string {
-	return "Point A"
-}
+
 
 // Accept ...
-func (p *planet) Accept(visitor Visitor) string {
-	return visitor.VisitPointA(p)
+func (p *planet) Accept() string {
+	return
 }
 
 // NewPlanet ...
-func NewPlanet() PointerA {
-	return &tatooine{}
+func NewPlanet(visitor firstOrder) Planet  {
+	return &planet {visitor: visitor}
 }
