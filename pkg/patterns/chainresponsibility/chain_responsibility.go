@@ -1,6 +1,11 @@
-package chainofres
+package handlers
+
+type (
+	response = string
+	request  = string
+)
 
 // Handler ...
 type Handler interface {
-	Treat(string) bool
+	Response(request) response
 }

@@ -7,7 +7,6 @@ import (
 )
 
 func main (){
-	planet.NewPlanet()
-	kashyyyk.NewPlanet()
-	yavin.NewPlanet()
+
+	planetA := NewPlanet()
 }

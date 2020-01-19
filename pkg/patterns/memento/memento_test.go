@@ -1,9 +1,8 @@
 package memento
 
 import (
-	"testing"
-
 	"github.com/stretchr/testify/assert"
+	"testing"
 )
 
 const (
@@ -11,18 +10,19 @@ const (
 )
 
 func TestMemento(t *testing.T) {
-	compA := NewOriginator()
-	storage := NewMemento()
+	memento := NewMemento()
+	memento.Push(1)
+	memento.Push(2)
+	backup = []int{1,2,3,4,5,6}
+
+
 
 	t.Run(testBackup, func(t *testing.T) {
-		compA.SetMemento(storage)
-		compA.SetData(12)
-		compA.SetBackup()
-		compA.SetData(134)
-		got := compA.BackBackup()
-		want := 12
-		if !assert.EqualValues(t, want, got) {
-			t.Errorf("test error want %v got %v", want, got)
+		want := 5
+		got := memento.Pop()
+
+		if !assert.EqualValues(t, want, got){
+			t.Errorf("%v %v", want, got)
 		}
 	})
 }

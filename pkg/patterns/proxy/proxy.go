@@ -8,6 +8,10 @@ type (
 	request        = string
 )
 
+type handlers interface {
+
+}
+
 type server interface {
 	Request(request) response
 }
@@ -22,6 +26,7 @@ type proxy struct {
 	apache         server
 	nginx          server
 	requestHistory []request
+	chainHandlers		handler
 }
 
 

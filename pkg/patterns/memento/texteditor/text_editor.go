@@ -2,18 +2,19 @@ package texteditor
 
 type (
 	changes = int
+	data    = int
 )
 
 type memento interface {
-	SetNewCopy(data changes)
-	GetPreviousCopy() int
+	Push(data changes)
+	Pop() (previousCopy data)
 }
 
 // TextEditor ...
 type TextEditor interface {
 	SetPreviousCopy()
 	MakeChanges(data changes)
-	ShowCurrentData() changes
+	ShowCurrentData() data
 }
 
 type textEditor struct {
@@ -23,18 +24,18 @@ type textEditor struct {
 
 // MakeChanges ...
 func (t *textEditor) MakeChanges(data changes) {
-	t.memento.SetNewCopy(data)
+	t.memento.Push(data)
 	t.data = data
 }
 
 // ShowCurrentData ...
-func (t *textEditor) ShowCurrentData() changes {
+func (t *textEditor) ShowCurrentData() data {
 	return t.data
 }
 
 // SetPreviousCopy ...
 func (t *textEditor) SetPreviousCopy() {
-	t.data = t.memento.GetPreviousCopy()
+	t.data = t.memento.Pop()
 }
 
 // NewTextEditor ...
