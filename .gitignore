@@ -15,4 +15,5 @@
 # vendor/
 #
 # My ignore
+!cmd/*/main.go
 *main.go
