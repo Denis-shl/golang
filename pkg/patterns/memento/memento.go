@@ -6,29 +6,30 @@ type (
 )
 
 type storage struct {
+	count  int
 	backup []int
 }
 
 // memento ...
 type Memento interface {
-	SetNewCopy(data changes)
-	GetPreviousCopy() int
+	Push(data changes)
+	Pop() int
 }
 
-// SetNewCopy ...
-func (s *storage) SetNewCopy(data changes) {
+// Push ...
+func (s *storage) Push(data changes) {
 	s.backup = append(s.backup, data)
+	s.count++
 }
 
-// GetPreviousCopy ...
-func (s *storage) GetPreviousCopy() data {
+func (s *storage) Pop() data {
 	var previousCopy int
 
-	backupID := len(s.backup) - 1
-	if backupID >= 1 {
-		previousCopy = s.backup[backupID-1]
-		s.backup = append(s.backup[:backupID])
+	if s.count == 0 {
+		return s.backup[0]
 	}
+	previousCopy = s.backup[s.count-1]
+	s.count -= 1
 	return previousCopy
 
 }
